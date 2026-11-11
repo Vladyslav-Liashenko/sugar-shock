@@ -1,4 +1,4 @@
-# Sugar Shock ⚡
+# Candy Shock ⚡
 
 Match-3 игра для Telegram Mini App с пополнением монет за Telegram Stars.
 

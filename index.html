@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sugar Shock</title>
+<title>Candy Shock</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +51,86 @@ body{
 .avatar-btn.has-daily .dot{display:block}
 .sheet{max-height:88vh;overflow:auto}
 .prof-head{display:flex;gap:14px;align-items:center;margin-bottom:16px}
+.avatar-edit{position:relative;border:0;padding:0;background:none;cursor:pointer;border-radius:50%;flex:none}
+.avatar-edit .cam{position:absolute;right:-3px;bottom:-3px;width:28px;height:28px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:14px;border:2px solid var(--surface)}
+.name-edit{border:0;background:var(--track);border-radius:10px;width:30px;height:30px;font-size:14px;cursor:pointer;vertical-align:3px;margin-left:2px}
+.text-in{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--track);color:var(--ink);font:inherit;font-weight:800;font-size:17px;margin-bottom:12px;user-select:text;-webkit-user-select:text}
+.text-in:focus{outline:2px solid var(--gold);outline-offset:1px}
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.dcard{position:relative;border-radius:16px;padding:10px 4px 10px;text-align:center;background:var(--track);border:2px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:84px}
+.dcard.big{grid-column:span 2;background:linear-gradient(135deg,#FFC21A,#FF8A1F 55%,#FF3B5C);color:#3A1600;box-shadow:0 6px 18px rgba(255,138,31,.35)}
+.dcard.today{border-color:var(--gold);background:var(--surface);box-shadow:0 0 0 3px rgba(255,194,26,.25)}
+.dcard.big.today{border-color:#fff;animation:glow 1.6s ease-in-out infinite}
+.dcard.got{opacity:.6}
+.dcard.got.big{opacity:.75}
+.dday{font-size:12px;font-weight:800;color:var(--muted)}
+.dcard.big .dday{color:#3A1600}
+.dgift{font-size:30px;line-height:1}
+.dprize{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;font-weight:900;font-size:16px}
+.dprize span{display:inline-flex;align-items:center;gap:3px}
+.dprize .coin,.dprize .gstar{width:18px;height:18px}
+.dcard.big .dprize{font-size:20px}
+.dcard.big .dprize .coin,.dcard.big .dprize .gstar{width:24px;height:24px}
+.dcheck{position:absolute;top:4px;right:6px;width:20px;height:20px;border-radius:50%;background:#3FD45A;color:#fff;font-size:12px;font-weight:900;display:grid;place-items:center}
+.dcard.pop-in{animation:popIn .5s ease-out}
+@keyframes glow{50%{box-shadow:0 6px 26px rgba(255,194,26,.75)}}
+@keyframes popIn{0%{transform:scale(.7)}60%{transform:scale(1.12)}100%{transform:none}}
+@media (prefers-reduced-motion: reduce){ .dcard.big.today,.dcard.pop-in{animation:none} }
+.screen{position:fixed;inset:0;z-index:12;background-color:var(--bg);background-attachment:fixed;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.screen[hidden]{display:none}
+.menu{max-width:520px;min-height:100%;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:14px}
+.menu-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.m-user{display:flex;align-items:center;gap:10px;border:0;background:none;color:var(--ink);font:inherit;font-weight:900;font-size:16px;cursor:pointer;padding:0;min-width:0}
+.m-user #mName{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.pills{display:flex;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:6px 12px;font:inherit;font-weight:800;font-size:15px;color:var(--ink)}
+button.pill{cursor:pointer}
+.pill b{background:var(--gold);color:var(--gold-ink);border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:15px}
+.pill .gstar{width:16px;height:16px;vertical-align:0}
+.logo-wrap{text-align:center;margin-top:6px}
+.logo{font-size:clamp(40px,12vw,58px);font-weight:900;line-height:1;letter-spacing:-.02em;background:linear-gradient(180deg,#FFF1A8,#FFC21A 55%,#FF8A1F);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 rgba(26,16,64,.55))}
+.logo-wrap .bolt{font-size:clamp(30px,9vw,44px);margin-left:4px;display:inline-block;filter:drop-shadow(0 0 8px rgba(255,194,26,.8));animation:boltFlick 3.2s infinite}
+.hero{display:flex;justify-content:center;gap:12px;margin:4px 0}
+.hero svg{width:clamp(48px,14vw,68px);height:clamp(48px,14vw,68px);animation:bob 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 6px rgba(0,0,0,.3))}
+.hero svg:nth-child(2){animation-delay:.3s}.hero svg:nth-child(3){animation-delay:.6s}.hero svg:nth-child(4){animation-delay:.9s}.hero svg:nth-child(5){animation-delay:1.2s}
+@keyframes bob{50%{transform:translateY(-9px) rotate(7deg)}}
+.world-card{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px}
+.wico{font-size:38px;width:62px;height:62px;flex:none;display:grid;place-items:center;border-radius:18px;background:var(--track)}
+.world-card .wtxt{flex:1;min-width:0}
+.world-card b{display:block;font-size:18px;font-weight:900}
+.world-card small{display:block;color:var(--muted);font-weight:700;margin:2px 0 8px}
+.btn.big{padding:18px;font-size:19px;border-radius:18px;box-shadow:0 6px 0 #C7820A;margin-bottom:4px}
+.btn.big:active{transform:translateY(3px);box-shadow:0 3px 0 #C7820A}
+.btn.big2{padding:15px;font-size:17px;border-radius:18px;margin-top:0;background:var(--surface)}
+.menu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
+.mbtn{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 4px;color:var(--ink);font:inherit;font-weight:800;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
+.mbtn .e{font-size:24px}
+.mbtn .dot{position:absolute;right:8px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--danger);border:2px solid var(--surface);display:none}
+.mbtn.has-dot .dot{display:block}
+.map-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+.map-top h2{margin:0;font-size:22px;font-weight:900;flex:1}
+.map-list{max-width:520px;margin:0 auto;padding:14px 14px 40px;display:flex;flex-direction:column;gap:16px}
+.wsec{border-radius:24px;padding:14px;background-color:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}
+.wsec.locked .path{filter:grayscale(1);opacity:.4}
+.whead{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.whead .wico{width:50px;height:50px;font-size:30px;border-radius:14px;background:var(--surface)}
+.whead b{display:block;font-size:17px;font-weight:900}
+.whead small{color:var(--muted);font-weight:700;display:flex;align-items:center;gap:4px}
+.whead small .gstar{width:14px;height:14px}
+.wlock{margin-top:10px;padding:8px 12px;border-radius:12px;background:var(--surface);font-weight:800;color:var(--muted);text-align:center;position:relative;z-index:1}
+.path{position:relative;margin-top:6px}
+.path svg.trail{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.node{position:absolute;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;border:3px solid rgba(255,255,255,.85);font:inherit;font-weight:900;font-size:18px;cursor:pointer;display:grid;place-items:center;background:#CFC8E8;color:#6C6495;box-shadow:0 4px 0 rgba(0,0,0,.25);padding:0}
+.node.done{background:linear-gradient(180deg,#B794FF,#7B4DFF);color:#fff}
+.node.cur{background:linear-gradient(180deg,#FFE27A,#FFB627);color:#4A2F00;width:66px;height:66px;font-size:22px;animation:glow 1.6s ease-in-out infinite;z-index:1}
+.node.locked{cursor:default}
+.node .ns{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);display:flex;gap:0}
+.node .ns .gstar{width:14px;height:14px}
+.node .nav{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:30px;height:30px;font-size:12px;border:2px solid #fff}
+.wintro{text-align:center}
+.wbig{font-size:84px;line-height:1;margin:6px 0 10px;animation:popIn .6s ease-out}
+.wname{font-size:22px;font-weight:900;color:var(--ink) !important;margin-bottom:8px !important}
+@media (prefers-reduced-motion: reduce){ .hero svg,.node.cur,.wbig,.logo-wrap .bolt{animation:none} }
 .prof-name{font-size:22px;font-weight:900;line-height:1.15}
 .prof-rank{color:var(--muted);font-weight:700;font-size:14px}
 .xp-row{display:flex;justify-content:space-between;font-weight:800;font-size:14px;margin-bottom:6px}
@@ -78,7 +158,7 @@ body{
 .notice{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));transform:translate(-50%,-160%);z-index:30;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:10px 16px;font-weight:800;font-size:15px;box-shadow:0 8px 24px rgba(35,27,79,.25);transition:transform .3s ease;max-width:calc(100% - 24px);text-align:center}
 .notice.show{transform:translate(-50%,0)}
 .top-right{display:flex;align-items:center;gap:8px}
-.icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
 .icon-btn svg{width:22px;height:22px}
 .field{margin-bottom:18px}
 .field-label{font-weight:800;font-size:15px;margin-bottom:8px}
@@ -107,8 +187,9 @@ body{
 .board-frame[data-skin="classic"] .board{border-radius:22px;background:repeating-conic-gradient(var(--cell) 0 25%,transparent 0 50%) 0 0/25% 25% var(--board);box-shadow:0 10px 30px rgba(35,27,79,.25)}
 .board-frame[data-skin="wood"]{background-color:#2A190F}
 .board-frame[data-skin="stars"]{background-color:#121632;box-shadow:inset 0 0 0 2px rgba(232,196,106,.55),inset 0 -4px 0 rgba(0,0,0,.5),0 14px 34px rgba(20,14,40,.4)}
-.skins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media (min-width:420px){ .skins.bg5{grid-template-columns:repeat(5,1fr)} }
+.skins{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 26px)/4.25);gap:8px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;padding:2px 2px 6px;margin:0 -2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.skins::-webkit-scrollbar{display:none}
+.skins .skin{scroll-snap-align:start}
 .skin{display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 4px 8px;border-radius:14px;border:2px solid transparent;background:var(--track);color:var(--ink);font:inherit;font-weight:800;font-size:13px;cursor:pointer}
 .skin[aria-pressed="true"]{border-color:var(--gold);background:var(--surface)}
 .gstar{width:18px;height:18px;vertical-align:-3px}
@@ -177,6 +258,21 @@ body{
 .ice.gone{animation:iceGone .32s forwards}
 @keyframes crack{50%{transform:scale(1.12);opacity:.6}}
 @keyframes iceGone{to{transform:scale(1.35);opacity:0}}
+.icon-btn.gift{position:relative;font-size:20px}
+.icon-btn .dot{position:absolute;right:-1px;top:-1px;width:12px;height:12px;border-radius:50%;background:var(--danger);border:2px solid var(--bg);display:none}
+.icon-btn.has-dot .dot{display:block}
+.wheel-wrap{position:relative;width:min(260px,70vw);margin:4px auto 14px}
+.wheel{width:100%;aspect-ratio:1/1;transform:rotate(0)}
+.wheel svg{width:100%;height:100%;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
+.wheel-ptr{position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:24px solid var(--gold);z-index:2;filter:drop-shadow(0 2px 2px rgba(0,0,0,.4))}
+.event{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:16px;background:linear-gradient(135deg,rgba(255,194,26,.25),rgba(255,59,92,.18));margin-bottom:14px}
+.event .ico{font-size:28px}
+.event b{display:block;font-size:16px}
+.event small{color:var(--muted);font-weight:700;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;background:var(--track);border-radius:99px;padding:3px 9px 3px 4px;font-weight:900;font-size:15px}
+.chip.done{background:#3FD45A;color:#0B3A16}
+.chip .gi{width:22px;height:22px;vertical-align:0}
 .gi{display:inline-block;width:22px;height:22px;vertical-align:-5px}
 .gi svg{width:100%;height:100%}
 .ach.next{border-color:var(--gold);border-width:2px}
@@ -197,11 +293,14 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .sheet h2{margin:0 0 6px;font-size:24px;font-weight:900}
 .sheet p{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.5}
 .btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;font:inherit;font-weight:800;font-size:16px;cursor:pointer;background:var(--gold);color:var(--gold-ink)}
+.btn.danger{background:var(--danger);color:#fff}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);margin-top:10px}
 .packs{display:grid;gap:10px;margin-bottom:4px}
 .pack{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;cursor:pointer}
 .pack-coins{display:flex;align-items:center;gap:8px;font-weight:900;font-size:19px}
 .pack-tag{font-size:12px;font-weight:800;color:var(--gold-ink);background:var(--gold);border-radius:99px;padding:2px 8px}
+.pack.exch{cursor:default}
+.pack-coins .gstar{width:22px;height:22px}
 .pack-price{font-weight:800;font-size:16px;background:var(--track);border-radius:12px;padding:6px 12px}
 .coin{width:20px;height:20px;flex:none}
 @media (prefers-reduced-motion: reduce){
@@ -216,11 +315,13 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <div class="app">
   <header class="top">
     <div class="top-left">
+      <button class="icon-btn" id="homeBtn" data-i18n-aria="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
       <button class="avatar-btn" id="profileBtn" data-i18n-aria="profile"><span class="avatar" id="avatarSm"></span><span class="lvl" id="plBadge">1</span><span class="dot"></span></button>
-      <div class="title"><span data-i18n="appTitle">Sugar Shock</span> <span class="bolt" aria-hidden="true">⚡</span><small id="level"></small></div>
+      <div class="title"><span data-i18n="appTitle">Candy Shock</span> <span class="bolt" aria-hidden="true">⚡</span><small id="level"></small></div>
     </div>
     <div class="top-right">
       <div class="coins"><span class="coin-ic"></span><span id="coins">0</span><button class="plus" id="plus" data-i18n-aria="topUp">+</button></div>
+      <button class="icon-btn" id="soundBtn" data-i18n-aria="music"></button>
       <button class="icon-btn" id="settings" data-i18n-aria="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
   </header>
@@ -257,6 +358,29 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   </nav>
 </div>
 
+<div class="screen" id="menu" hidden>
+  <div class="menu">
+    <div class="menu-top">
+      <button class="m-user" data-m="profile"><span class="avatar" id="mAvatar"></span><span id="mName"></span></button>
+      <div class="pills"><button class="pill" data-m="topup"><span class="coin-ic"></span><span id="mCoins">0</span><b>+</b></button><button class="pill" data-m="topup" id="mStars"></button></div>
+    </div>
+    <div class="logo-wrap"><span class="logo" data-i18n="appTitle">Candy Shock</span><span class="bolt" aria-hidden="true">⚡</span></div>
+    <div class="hero" id="mHero" aria-hidden="true"></div>
+    <div class="world-card" id="mWorld"></div>
+    <button class="btn big" data-m="play" id="mPlay"></button>
+    <button class="btn ghost big2" data-m="map">🗺️ <span data-i18n="mapTitle"></span></button>
+    <div class="menu-row">
+      <button class="mbtn" id="bonusBtn" data-m="bonus"><span class="e">🎁</span><span data-i18n="menuBonus"></span><span class="dot"></span></button>
+      <button class="mbtn" data-m="profile"><span class="e">👤</span><span data-i18n="menuProfile"></span></button>
+      <button class="mbtn" data-m="settings"><span class="e">⚙️</span><span data-i18n="menuSettings"></span></button>
+    </div>
+  </div>
+</div>
+<div class="screen" id="mapScr" hidden>
+  <div class="map-top"><button class="icon-btn" data-m="back" data-i18n-aria="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><h2 data-i18n="mapTitle"></h2><span class="pill" id="mapStars"></span></div>
+  <div class="map-list" id="mapList"></div>
+</div>
+<input type="file" id="photoIn" accept="image/*" hidden>
 <div class="notice" id="notice" role="status" aria-live="polite"></div>
 <div class="overlay" id="overlay"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 
@@ -275,19 +399,33 @@ const cloud = tgAtLeast('6.9') && tg.CloudStorage ? tg.CloudStorage : null;
 
 const N = 8, TYPES = 6, MOVES = 20, KEY = 'blestki-v1'; // storage key kept so saved progress survives the rename
 const COST = { shuffle:30, hammer:40, moves:50, planeB:35 };
-const FEATURES = [
+const FEATURES_RAW = [
   { pl:1, id:'base', icon:'🍬' }, { pl:2, id:'hammer', icon:'🔨' }, { pl:3, id:'ice', icon:'❄️' },
-  { pl:4, id:'color6', icon:'🎨' }, { pl:4, id:'shuffle', icon:'🔀' }, { pl:5, id:'collect', icon:'🎯' },
+  { pl:4, id:'color6', icon:'🎨' }, { pl:4, id:'shuffle', icon:'🔀' }, { pl:2, id:'goals', icon:'📋' }, { pl:4, id:'keys', icon:'🔑' }, { pl:5, id:'collect', icon:'🎯' },
   { pl:6, id:'planeB', icon:'✈️' }, { pl:6, id:'cage', icon:'🔒' }, { pl:7, id:'ice2', icon:'🧊' }, { pl:8, id:'timers', icon:'⏱️' }
 ];
+const FEATURES = FEATURES_RAW.slice().sort((a,b) => a.pl - b.pl);
+// stars = price in Telegram Stars; coins / gems = what the player gets (gems are the in-game stars)
 const PACKS = [
   { stars:50,  coins:120 },
   { stars:150, coins:400,  tag:'tagBest' },
-  { stars:400, coins:1200, tag:'tagMost' }
+  { stars:400, coins:1200, tag:'tagMost' },
+  { stars:25,  gems:10 },
+  { stars:75,  gems:35,  tag:'tagBest' },
+  { stars:200, gems:100, tag:'tagMost' }
 ];
+const EXCH = [{ g:5, c:100 }, { g:20, c:450 }, { g:50, c:1200 }];
 const LANGS = { uk:'Українська', ru:'Русский', en:'English' };
 const I18N = {
   uk: {
+    quitTitle:'Вийти з гри?', quitText:'Ви впевнені, що хочете вийти? Прогрес поточної гри буде втрачено.', quitYes:'Вийти', quitNo:'Залишитись',
+    coinsTitle:'Монети', starsTitle:'Зірки', exchTitle:'Обмін зірок на монети', exchBtn:'Обміняти', noStars:'Не вистачає зірок', tGems:'+{n} зірок', buyStars:'Купити зірки', tgStarsNote:'Покупки оплачуються через Telegram Stars ⭐', skin_candycane:'Льодяник', skin_mint:'М’ята', skin_ice:'Лід', skin_choco:'Шоколад', skin_neon:'Неон', skin_gold:'Золото', bg_hearts:'Серця', bg_confetti:'Конфеті', bg_clouds:'Хмаринки', bg_ocean:'Океан', bg_synth:'Ретрохвиля', bg_galaxy:'Галактика',
+    continue:'Продовжити · Рівень {n}', mapTitle:'Карта', menuBonus:'Бонуси', menuProfile:'Профіль', menuSettings:'Налаштування', home:'Меню', worldN:'Світ {n}', worldLocked:'Відкриється після рівня {n}', newWorld:'Нова локація!', newWorldText:'Ти відкрив новий солодкий світ: нові рівні й нові виклики!', go:'Вперед!', bg_loc:'Локація', w_caramel:'Карамельна долина', w_choco:'Шоколадний ліс', w_mint:'М’ятні гори', w_lolly:'Льодяникові озера', w_jelly:'Мармеладні острови', w_cloud:'Зефірні хмари', w_honey:'Медова пустеля', w_berry:'Ягідні джунглі', w_volcano:'Желейний вулкан', w_cosmic:'Зоряна цукерня',
+    dailyTitle:'Щоденний бонус', dayN:'День {n}', dailyHint:'Заходь щодня: на 7-й день на тебе чекає суперприз! Пропустиш день, і серія почнеться спочатку.', claimNow:'Забрати', comeBack:'Повертайся завтра', nDailyBig:'Суперприз: +{c} монет і +{s} зірок!',
+    editName:'Ім’я гравця', save:'Зберегти', resetName:'Повернути ім’я з Telegram', nameSaved:'Ім’я збережено', photoTitle:'Фото профілю', photoChange:'Завантажити з телефона', photoRemove:'Повернути фото з Telegram', photoSaved:'Фото оновлено', photoErr:'Не вдалося відкрити фото',
+    bonusTitle:'Бонуси', wheelTitle:'Колесо удачі', spin:'Крутити безкоштовно', spinTomorrow:'Наступне обертання завтра', wheelWon:'Виграш: {p}', tasksTitle:'Завдання дня', taskReady:'Завдання виконано! Забери нагороду в «Бонусах»', task_color:'Збери {n} таких цукерок', task_wins:'Пройди {n} рівні', task_combo:'Зроби комбо ×3 {n} рази', task_popped:'Збери {n} цукерок', task_planes:'Запусти {n} літачків', task_ice:'Розбий {n} льодинок', friendsTitle:'Друзі', friendsText:'Надішли гру друзям: кожен новачок за твоїм посиланням отримає 100 монет у подарунок.', inviteBtn:'Запросити друга', inviteText:'Грай зі мною в Candy Shock ⚡ і забери 100 монет у подарунок!', welcomeGift:'Подарунок від друга: +{n} монет', evText:'Подія: +1 зірка за перемогу й +50% монет', ev_autumn:'Осінні ласощі', ev_winter:'Зимове диво', ev_love:'Солодкий Валентин', ev_spring:'Весняне цвітіння', ev_summer:'Літній шок',
+    loseGoals:'Не виконано:', tGoalsOne:'Виконай ціль рівня', tGoalsMany:'Цілей на рівні: {n}', f_goals:'Завдання рівня', fd_goals:'Кілька цілей: кольори, літачки й більше', f_keys:'Ключики', fd_keys:'Доведи ключик до низу поля',
+    music:'Музика', sounds:'Звуки', on:'Увімк.', off:'Вимк.',
     payOnlyTg:'Поповнення доступне в застосунку Telegram. Відкрийте гру через бота.', payOpening:'Відкриваємо оплату…', payFailed:'Оплата не пройшла. Спробуйте ще раз.', payPending:'Платіж обробляється. Монети з’являться після підтвердження.', payError:'Не вдалося відкрити оплату. Перевірте інтернет і спробуйте ще раз.',
     starForms:['зірка','зірки','зірок'], appBg:'Фон застосунку', bg_none:'Без фону', bg_candy:'Цукерки', bg_sunset:'Захід', bg_aurora:'Сяйво', bg_space:'Космос',
     youHave:'У вас {n} {w}', unlockTitle:'Відкрити «{name}»', unlockText:'Коштує {p} {w}. Зірки дають за кожен пройдений рівень: від 1 до 3, залежно від того, скільки ходів залишилось.',
@@ -313,7 +451,7 @@ const I18N = {
     a_candy500:'Повний кошик', d_candy500:'Зберіть 500 цукерок', a_bomber:'Веселка', d_bomber:'Створіть 5 веселкових льодяників',
     a_level10:'Десятка', d_level10:'Пройдіть 10 рівнів', a_pilot:'Пілот', d_pilot:'Запустіть 10 літачків', a_buyer:'Перша покупка', d_buyer:'Поповніть монети за зірки',
     a_streak7:'Тиждень поспіль', d_streak7:'Забирайте бонус 7 днів поспіль',
-    appTitle:'Sugar Shock', level:'Рівень {n}', goal:'{s} <span>з</span> {t} <span>очок</span>',
+    appTitle:'Candy Shock', level:'Рівень {n}', goal:'{s} <span>з</span> {t} <span>очок</span>',
     moveForms:['хід','ходи','ходів'], topUp:'Поповнити монети', settings:'Налаштування', board:'Ігрове поле',
     shuffle:'Перемішати', hammer:'Молоток', movesBtn:'Ходи',
     tShuffling:'Перемішуємо', tBoom:'Бум!', tCombo:'Комбо ×{n}', tPick:'Оберіть фішку', tPlus5:'+5 ходів', tCoins:'+{n} монет',
@@ -327,6 +465,14 @@ const I18N = {
     language:'Мова', theme:'Тема', themeAuto:'Авто', themeLight:'Світла', themeDark:'Темна', done:'Готово'
   },
   ru: {
+    quitTitle:'Выйти из игры?', quitText:'Вы уверены, что хотите выйти? Прогресс текущей игры будет потерян.', quitYes:'Выйти', quitNo:'Остаться',
+    coinsTitle:'Монеты', starsTitle:'Звёзды', exchTitle:'Обмен звёзд на монеты', exchBtn:'Обменять', noStars:'Не хватает звёзд', tGems:'+{n} звёзд', buyStars:'Купить звёзды', tgStarsNote:'Покупки оплачиваются через Telegram Stars ⭐', skin_candycane:'Леденец', skin_mint:'Мята', skin_ice:'Лёд', skin_choco:'Шоколад', skin_neon:'Неон', skin_gold:'Золото', bg_hearts:'Сердца', bg_confetti:'Конфетти', bg_clouds:'Облака', bg_ocean:'Океан', bg_synth:'Ретроволна', bg_galaxy:'Галактика',
+    continue:'Продолжить · Уровень {n}', mapTitle:'Карта', menuBonus:'Бонусы', menuProfile:'Профиль', menuSettings:'Настройки', home:'Меню', worldN:'Мир {n}', worldLocked:'Откроется после уровня {n}', newWorld:'Новая локация!', newWorldText:'Ты открыл новый сладкий мир: новые уровни и новые испытания!', go:'Вперёд!', bg_loc:'Локация', w_caramel:'Карамельная долина', w_choco:'Шоколадный лес', w_mint:'Мятные горы', w_lolly:'Леденцовые озёра', w_jelly:'Мармеладные острова', w_cloud:'Зефирные облака', w_honey:'Медовая пустыня', w_berry:'Ягодные джунгли', w_volcano:'Желейный вулкан', w_cosmic:'Звёздная кондитерская',
+    dailyTitle:'Ежедневный бонус', dayN:'День {n}', dailyHint:'Заходи каждый день: на 7-й день тебя ждёт суперприз! Пропустишь день, и серия начнётся сначала.', claimNow:'Забрать', comeBack:'Возвращайся завтра', nDailyBig:'Суперприз: +{c} монет и +{s} звёзд!',
+    editName:'Имя игрока', save:'Сохранить', resetName:'Вернуть имя из Telegram', nameSaved:'Имя сохранено', photoTitle:'Фото профиля', photoChange:'Загрузить с телефона', photoRemove:'Вернуть фото из Telegram', photoSaved:'Фото обновлено', photoErr:'Не удалось открыть фото',
+    bonusTitle:'Бонусы', wheelTitle:'Колесо удачи', spin:'Крутить бесплатно', spinTomorrow:'Следующее вращение завтра', wheelWon:'Выигрыш: {p}', tasksTitle:'Задания дня', taskReady:'Задание выполнено! Забери награду в «Бонусах»', task_color:'Собери {n} таких конфет', task_wins:'Пройди {n} уровня', task_combo:'Сделай комбо ×3 {n} раза', task_popped:'Собери {n} конфет', task_planes:'Запусти {n} самолётиков', task_ice:'Разбей {n} льдинок', friendsTitle:'Друзья', friendsText:'Отправь игру друзьям: каждый новичок по твоей ссылке получит 100 монет в подарок.', inviteBtn:'Пригласить друга', inviteText:'Играй со мной в Candy Shock ⚡ и забери 100 монет в подарок!', welcomeGift:'Подарок от друга: +{n} монет', evText:'Событие: +1 звезда за победу и +50% монет', ev_autumn:'Осенние сладости', ev_winter:'Зимнее чудо', ev_love:'Сладкий Валентин', ev_spring:'Весеннее цветение', ev_summer:'Летний шок',
+    loseGoals:'Не выполнено:', tGoalsOne:'Выполни цель уровня', tGoalsMany:'Целей на уровне: {n}', f_goals:'Задания уровня', fd_goals:'Несколько целей: цвета, самолётики и больше', f_keys:'Ключики', fd_keys:'Доведи ключик до низа поля',
+    music:'Музыка', sounds:'Звуки', on:'Вкл.', off:'Выкл.',
     payOnlyTg:'Пополнение доступно в приложении Telegram. Откройте игру через бота.', payOpening:'Открываем оплату…', payFailed:'Оплата не прошла. Попробуйте ещё раз.', payPending:'Платёж обрабатывается. Монеты появятся после подтверждения.', payError:'Не удалось открыть оплату. Проверьте интернет и попробуйте ещё раз.',
     starForms:['звезда','звезды','звёзд'], appBg:'Фон приложения', bg_none:'Без фона', bg_candy:'Конфеты', bg_sunset:'Закат', bg_aurora:'Сияние', bg_space:'Космос',
     youHave:'У вас {n} {w}', unlockTitle:'Открыть «{name}»', unlockText:'Стоит {p} {w}. Звёзды дают за каждый пройденный уровень: от 1 до 3, в зависимости от того, сколько ходов осталось.',
@@ -352,7 +498,7 @@ const I18N = {
     a_candy500:'Полная корзинка', d_candy500:'Соберите 500 конфет', a_bomber:'Радуга', d_bomber:'Создайте 5 радужных леденцов',
     a_level10:'Десятка', d_level10:'Пройдите 10 уровней', a_pilot:'Пилот', d_pilot:'Запустите 10 самолётиков', a_buyer:'Первая покупка', d_buyer:'Пополните монеты за звёзды',
     a_streak7:'Неделя подряд', d_streak7:'Забирайте бонус 7 дней подряд',
-    appTitle:'Sugar Shock', level:'Уровень {n}', goal:'{s} <span>из</span> {t} <span>очков</span>',
+    appTitle:'Candy Shock', level:'Уровень {n}', goal:'{s} <span>из</span> {t} <span>очков</span>',
     moveForms:['ход','хода','ходов'], topUp:'Пополнить монеты', settings:'Настройки', board:'Игровое поле',
     shuffle:'Перемешать', hammer:'Молоток', movesBtn:'Ходы',
     tShuffling:'Перемешиваем', tBoom:'Бум!', tCombo:'Комбо ×{n}', tPick:'Выберите фишку', tPlus5:'+5 ходов', tCoins:'+{n} монет',
@@ -366,6 +512,14 @@ const I18N = {
     language:'Язык', theme:'Тема', themeAuto:'Авто', themeLight:'Светлая', themeDark:'Тёмная', done:'Готово'
   },
   en: {
+    quitTitle:'Leave the game?', quitText:'Are you sure you want to leave? Your progress in this game will be lost.', quitYes:'Leave', quitNo:'Stay',
+    coinsTitle:'Coins', starsTitle:'Stars', exchTitle:'Swap stars for coins', exchBtn:'Swap', noStars:'Not enough stars', tGems:'+{n} stars', buyStars:'Buy stars', tgStarsNote:'Purchases are paid with Telegram Stars ⭐', skin_candycane:'Candy cane', skin_mint:'Mint', skin_ice:'Ice', skin_choco:'Chocolate', skin_neon:'Neon', skin_gold:'Gold', bg_hearts:'Hearts', bg_confetti:'Confetti', bg_clouds:'Clouds', bg_ocean:'Ocean', bg_synth:'Synthwave', bg_galaxy:'Galaxy',
+    continue:'Continue · Level {n}', mapTitle:'Map', menuBonus:'Bonuses', menuProfile:'Profile', menuSettings:'Settings', home:'Menu', worldN:'World {n}', worldLocked:'Unlocks after level {n}', newWorld:'New location!', newWorldText:'You unlocked a new sweet world with new levels and new challenges!', go:'Let’s go!', bg_loc:'Location', w_caramel:'Caramel Valley', w_choco:'Chocolate Forest', w_mint:'Mint Mountains', w_lolly:'Lollipop Lakes', w_jelly:'Jelly Islands', w_cloud:'Marshmallow Clouds', w_honey:'Honey Desert', w_berry:'Berry Jungle', w_volcano:'Jelly Volcano', w_cosmic:'Star Bakery',
+    dailyTitle:'Daily bonus', dayN:'Day {n}', dailyHint:'Come back every day: a super prize waits on day 7! Miss a day and the streak starts over.', claimNow:'Claim', comeBack:'Come back tomorrow', nDailyBig:'Super prize: +{c} coins and +{s} stars!',
+    editName:'Player name', save:'Save', resetName:'Use my Telegram name', nameSaved:'Name saved', photoTitle:'Profile photo', photoChange:'Upload from phone', photoRemove:'Use my Telegram photo', photoSaved:'Photo updated', photoErr:'Couldn’t open the photo',
+    bonusTitle:'Bonuses', wheelTitle:'Lucky wheel', spin:'Spin for free', spinTomorrow:'Next spin tomorrow', wheelWon:'You won: {p}', tasksTitle:'Daily tasks', taskReady:'Task complete! Claim it in Bonuses', task_color:'Collect {n} of these candies', task_wins:'Clear {n} levels', task_combo:'Make a ×3 combo {n} times', task_popped:'Collect {n} candies', task_planes:'Launch {n} planes', task_ice:'Break {n} ice tiles', friendsTitle:'Friends', friendsText:'Share the game: every newcomer from your link gets 100 coins as a gift.', inviteBtn:'Invite a friend', inviteText:'Play Candy Shock ⚡ with me and get 100 coins as a gift!', welcomeGift:'Gift from a friend: +{n} coins', evText:'Event: +1 star per win and +50% coins', ev_autumn:'Autumn treats', ev_winter:'Winter wonder', ev_love:'Sweet Valentine', ev_spring:'Spring bloom', ev_summer:'Summer shock',
+    loseGoals:'Not done yet:', tGoalsOne:'Complete the level goal', tGoalsMany:'Level goals: {n}', f_goals:'Level tasks', fd_goals:'Several goals: colors, planes and more', f_keys:'Keys', fd_keys:'Bring the key to the bottom of the board',
+    music:'Music', sounds:'Sounds', on:'On', off:'Off',
     payOnlyTg:'Top-ups are available in the Telegram app. Open the game through the bot.', payOpening:'Opening payment…', payFailed:'Payment failed. Please try again.', payPending:'Payment is processing. Coins will appear once it’s confirmed.', payError:'Couldn’t open payment. Check your connection and try again.',
     starForms:['star','stars'], appBg:'App background', bg_none:'None', bg_candy:'Candies', bg_sunset:'Sunset', bg_aurora:'Aurora', bg_space:'Space',
     youHave:'You have {n} {w}', unlockTitle:'Unlock “{name}”', unlockText:'Costs {p} {w}. You earn stars for every level you clear: 1 to 3, depending on how many moves are left.',
@@ -391,7 +545,7 @@ const I18N = {
     a_candy500:'Full basket', d_candy500:'Collect 500 candies', a_bomber:'Rainbow', d_bomber:'Make 5 rainbow lollipops',
     a_level10:'Top ten', d_level10:'Clear 10 levels', a_pilot:'Pilot', d_pilot:'Launch 10 planes', a_buyer:'First purchase', d_buyer:'Top up coins with Stars',
     a_streak7:'Week streak', d_streak7:'Claim the bonus 7 days in a row',
-    appTitle:'Sugar Shock', level:'Level {n}', goal:'{s} <span>of</span> {t} <span>points</span>',
+    appTitle:'Candy Shock', level:'Level {n}', goal:'{s} <span>of</span> {t} <span>points</span>',
     moveForms:['move','moves'], topUp:'Top up coins', settings:'Settings', board:'Game board',
     shuffle:'Shuffle', hammer:'Hammer', movesBtn:'Moves',
     tShuffling:'Shuffling', tBoom:'Boom!', tCombo:'Combo ×{n}', tPick:'Pick a piece', tPlus5:'+5 moves', tCoins:'+{n} coins',
@@ -452,6 +606,30 @@ const SKINS = {
       under:`<rect ${FULL} filter="url(#gD)" opacity=".7"/>`, over:`<rect ${FULL} filter="url(#gL)" opacity=".6"/>` }),
     frameSVG(['#3A2416','#2A190F','#1C100A'], grain('gF',13), `<rect width="400" height="400" filter="url(#gF)" opacity=".8"/>`)
   ],
+  candycane: () => [
+    squaresSVG({ dk:['#E8445E','#C42A47'], lt:['#FFD3DC','#F7B6C4'], bevel:.25, grout:.3,
+      defs:'<pattern id="st" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="13" height="30" fill="#fff"/></pattern>',
+      over:`<rect ${FULL} fill="url(#st)" opacity=".35"/>`, under:`<rect ${FULL} fill="url(#st)" opacity=".12"/>` }),
+    frameSVG(['#FF6B81','#E8445E','#9E1F37'])
+  ],
+  mint: () => [ squaresSVG({ dk:['#1E6F63','#155349'], lt:['#3FB59F','#2E9A86'], bevel:.18, grout:.35 }), frameSVG(['#4FD1B8','#1E8F7C','#0E4A40']) ],
+  ice: () => [
+    squaresSVG({ dk:['#1E4E7A','#163C60'], lt:['#4F92C6','#3C7AAE'], bevel:.3, grout:.35,
+      defs:'<filter id="fr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 -.55"/></filter>',
+      over:`<rect ${FULL} filter="url(#fr)" opacity=".5"/>`, under:`<rect ${FULL} filter="url(#fr)" opacity=".25"/>` }),
+    frameSVG(['#CDEBFF','#6FB2E6','#2F6FA8'])
+  ],
+  choco: () => [ squaresSVG({ dk:['#4A2A17','#3A1F10'], lt:['#6B3E22','#5A321A'], bevel:.28, grout:.55 }), frameSVG(['#7A4A2C','#4A2A17','#2A160A']) ],
+  neon: () => {
+    let g = ''; for (let k=0;k<=8;k++) g += `<path d="M${k*100} 0 V800" stroke="#FF3BD4"/><path d="M0 ${k*100} H800" stroke="#3BE4FF"/>`;
+    return [ squaresSVG({ dk:['#0C0A1C','#090716'], lt:['#16113A','#120D2E'], bevel:0, grout:0, top:`<g stroke-width="3" opacity=".75">${g}</g>` }),
+      frameSVG(['#2A0F4F','#12082A','#0A0518'], '', '<rect x="6" y="6" width="388" height="388" rx="22" fill="none" stroke="#FF3BD4" stroke-opacity=".7" stroke-width="4"/>') ];
+  },
+  gold: () => {
+    let g = ''; for (let r=0;r<8;r++) for (let c=0;c<8;c++) g += `<rect x="${c*100+6}" y="${r*100+6}" width="88" height="88" rx="10"/>`;
+    return [ squaresSVG({ dk:['#17140F','#0E0C08'], lt:['#2A2416','#211C10'], bevel:.06, grout:.5, top:`<g fill="none" stroke="#E6B84A" stroke-opacity=".55" stroke-width="2.5">${g}</g>` }),
+      frameSVG(['#F7D774','#B8860B','#5E430A']) ];
+  },
   stars: () => {
     let st = '';
     for (let i=0;i<110;i++) st += `<circle cx="${(Math.random()*800).toFixed(0)}" cy="${(Math.random()*800).toFixed(0)}" r="${(Math.random()*1.7+.4).toFixed(1)}" fill="#fff" opacity="${(Math.random()*.6+.25).toFixed(2)}"/>`;
@@ -472,7 +650,29 @@ function applySkin(){
   else { boardEl.style.backgroundImage = ''; f.style.backgroundImage = ''; }
 }
 const STAR_SVG = (lit = true) => `<svg viewBox="0 0 24 24" class="gstar ${lit ? 'on' : ''}"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" fill="${lit ? '#FFC21A' : 'none'}" stroke="${lit ? '#D98A00' : 'currentColor'}" stroke-width="1.6" stroke-linejoin="round" opacity="${lit ? 1 : .35}"/></svg>`;
+const WORLDS = [
+  { id:'caramel', icon:'🍭', c:['#FF8FB1','#FFB86B'] }, { id:'choco', icon:'🍫', c:['#A0643C','#E0A06A'] },
+  { id:'mint', icon:'🌿', c:['#3FD4B0','#7FE0FF'] }, { id:'lolly', icon:'🧊', c:['#2F8CFF','#9AD0FF'] },
+  { id:'jelly', icon:'🏝️', c:['#3FD45A','#FFC21A'] }, { id:'cloud', icon:'☁️', c:['#C9A7FF','#FFB3D9'] },
+  { id:'honey', icon:'🍯', c:['#FFB627','#FF8A1F'] }, { id:'berry', icon:'🍓', c:['#FF3B5C','#A855F7'] },
+  { id:'volcano', icon:'🌋', c:['#FF5A1F','#C8174A'] }, { id:'cosmic', icon:'🌌', c:['#6A5CFF','#2A3AA8'] }
+];
+const LPW = 10;
+const worldNum = L => Math.floor((L-1)/LPW) + 1;
+const worldIdx = L => (worldNum(L) - 1) % WORLDS.length;
+const rgba = (hex, a) => { const n = parseInt(hex.slice(1),16); return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`; };
+const locCache = {};
+function locBg(i){
+  if (locCache[i]) return locCache[i];
+  const [a,b] = WORLDS[i].c, pos = [[14,18,-18],[118,10,22],[64,78,8],[150,104,-24],[18,132,26],[100,150,-10]];
+  let deco = pos.map(([x,y,r],k) => `<g transform="translate(${x} ${y}) rotate(${r} 20 20) scale(.36)">${SHAPES[(k+i)%6][0](`fill="${k%2 ? a : b}"`)}</g>`).join('');
+  for (let k=0;k<7;k++) deco += `<circle cx="${(k*37+i*13)%200}" cy="${(k*59+i*29)%200}" r="${2+k%3}" fill="#fff" opacity=".35"/>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><g opacity=".2">${deco}</g></svg>`;
+  return locCache[i] = { image: `${svgUrl(svg)}, radial-gradient(130% 70% at 15% 0%, ${rgba(a,.5)}, transparent 62%), radial-gradient(120% 70% at 100% 100%, ${rgba(b,.45)}, transparent 60%)`, size: '200px 200px, cover, cover' };
+}
+const curWorld = () => worldIdx(screen === 'game' ? playLv : state.level);
 const BGS = {
+  loc: null,
   none: null,
   candy: () => {
     const pos = [[10,12,-15],[100,8,20],[55,62,10],[140,70,-25],[12,110,25],[95,120,-10]];
@@ -482,21 +682,50 @@ const BGS = {
   },
   sunset: () => ({ image: 'linear-gradient(180deg, rgba(255,138,31,.3), rgba(255,59,92,.24) 50%, rgba(168,85,247,.3))', size: 'cover' }),
   aurora: () => ({ image: 'radial-gradient(120% 60% at 15% 0%, rgba(63,212,90,.38), transparent 60%), radial-gradient(100% 60% at 95% 15%, rgba(47,140,255,.36), transparent 60%), radial-gradient(130% 70% at 50% 100%, rgba(168,85,247,.32), transparent 60%)', size: 'cover' }),
+  hearts: () => {
+    const h = (x,y,sc,c,r) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${sc})"><path d="M0 8 C-12 -2 -8 -14 0 -8 C8 -14 12 -2 0 8Z" fill="${c}"/></g>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><g opacity=".22">${h(20,24,1.4,'#FF3B5C',-12)}${h(96,30,1,'#FF8FB1',15)}${h(60,82,1.7,'#FF5A8A',8)}${h(118,110,1.2,'#FF3B5C',-20)}${h(18,118,.9,'#FFB3D9',10)}</g></svg>`;
+    return { image: svgUrl(svg) + ', linear-gradient(180deg, rgba(255,143,177,.28), rgba(255,59,92,.18))', size: '140px 140px, cover' };
+  },
+  confetti: () => {
+    let c = ''; const cols = ['#FF3B5C','#FFC21A','#3FD45A','#2F8CFF','#A855F7','#FF8A1F'];
+    for (let i=0;i<22;i++) c += `<rect x="${(i*53)%160}" y="${(i*89)%160}" width="${6+i%3*2}" height="${3+i%2*2}" rx="1.5" fill="${cols[i%6]}" transform="rotate(${(i*47)%180} ${(i*53)%160} ${(i*89)%160})"/>`;
+    return { image: svgUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><g opacity=".45">${c}</g></svg>`), size: '160px 160px' };
+  },
+  clouds: () => {
+    const cl = (x,y,s) => `<g transform="translate(${x} ${y}) scale(${s})"><circle cx="0" cy="0" r="14"/><circle cx="16" cy="-6" r="18"/><circle cx="34" cy="2" r="13"/><rect x="0" y="0" width="34" height="13"/></g>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><g fill="#fff" opacity=".45">${cl(20,40,1)}${cl(130,90,1.3)}${cl(40,170,.8)}</g></svg>`;
+    return { image: svgUrl(svg) + ', linear-gradient(180deg, rgba(127,200,255,.4), rgba(255,179,217,.32))', size: '220px 220px, cover' };
+  },
+  ocean: () => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="60"><path d="M0 30 Q20 18 40 30 T80 30 T120 30 T160 30" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="3"/></svg>`;
+    return { image: svgUrl(svg) + ', linear-gradient(180deg, rgba(63,212,176,.35), rgba(47,140,255,.4) 60%, rgba(30,60,160,.45))', size: '160px 60px, cover' };
+  },
+  synth: () => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><path d="M0 59.5 H60 M59.5 0 V60" stroke="#FF3BD4" stroke-opacity=".28" stroke-width="1.5"/></svg>`;
+    return { image: svgUrl(svg) + ', linear-gradient(180deg, rgba(106,92,255,.4), rgba(255,59,212,.32) 55%, rgba(255,138,31,.32))', size: '60px 60px, cover' };
+  },
+  galaxy: () => {
+    let st = '';
+    for (let i=0;i<50;i++) st += `<circle cx="${(Math.random()*220).toFixed(0)}" cy="${(Math.random()*220).toFixed(0)}" r="${(Math.random()*1.4+.3).toFixed(1)}" fill="#fff" opacity="${(Math.random()*.6+.25).toFixed(2)}"/>`;
+    return { image: svgUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220">${st}</svg>`) + ', radial-gradient(60% 40% at 25% 30%, rgba(255,59,212,.4), transparent 70%), radial-gradient(60% 45% at 80% 70%, rgba(47,140,255,.45), transparent 70%), radial-gradient(120% 90% at 50% 50%, #2A1A5E, #0B0820 75%)', size: '220px 220px, cover, cover, cover' };
+  },
   space: () => {
     let st = '';
     for (let i=0;i<40;i++) st += `<circle cx="${(Math.random()*200).toFixed(0)}" cy="${(Math.random()*200).toFixed(0)}" r="${(Math.random()*1.3+.3).toFixed(1)}" fill="#fff" opacity="${(Math.random()*.6+.2).toFixed(2)}"/>`;
     return { image: svgUrl(`<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">${st}</svg>`) + ', radial-gradient(120% 80% at 50% 0%, #26306A, #0D1024 70%)', size: '200px 200px, cover' };
   }
 };
-const PRICES = { board:{ classic:0, marble:0, wood:80, stars:150 }, bg:{ none:0, candy:50, sunset:100, aurora:150, space:220 } };
+const PRICES = { board:{ classic:0, marble:0, wood:0, stars:0, candycane:40, mint:40, ice:60, choco:60, neon:90, gold:120 }, bg:{ loc:0, none:0, candy:0, sunset:0, aurora:0, space:0, hearts:30, confetti:30, clouds:50, ocean:60, synth:80, galaxy:100 } };
 const bgCache = {};
-function bgStyle(id){ if (!BGS[id]) return null; if (!bgCache[id]) bgCache[id] = BGS[id](); return bgCache[id]; }
+function bgStyle(id){ if (id === 'loc') return locBg(curWorld()); if (!BGS[id]) return null; if (!bgCache[id]) bgCache[id] = BGS[id](); return bgCache[id]; }
 function owns(kind, id){ return PRICES[kind][id] === 0 || !!(state.owned && state.owned[kind+':'+id]); }
 function applyBg(){
-  if (!(state.bg in BGS) || !owns('bg', state.bg)) state.bg = 'none';
+  if (!(state.bg in BGS) || !owns('bg', state.bg)) state.bg = 'loc';
   const b = bgStyle(state.bg), body = document.body;
   if (b){ body.style.backgroundImage = b.image; body.style.backgroundSize = b.size; body.style.backgroundAttachment = 'fixed'; }
   else { body.style.backgroundImage = ''; body.style.backgroundSize = ''; body.style.backgroundAttachment = ''; }
+  for (const id of ['menu','mapScr']){ const e = document.getElementById(id); if (e){ e.style.backgroundImage = b ? b.image : ''; e.style.backgroundSize = b ? b.size : ''; } }
   applyTheme();
 }
 function itemName(kind, id){ return t((kind==='board' ? 'skin_' : 'bg_') + id); }
@@ -506,7 +735,7 @@ function paintSwatch(el, kind, id){
     else el.style.background = 'repeating-conic-gradient(#342A74 0 25%,#2B2263 0 50%) 0 0/100% 100%';
   } else {
     el.classList.add('sw-bg');
-    const b = bgStyle(id); if (b){ el.style.backgroundImage = b.image; el.style.backgroundSize = b.size.replace(/180px 180px|200px 200px/, '90px 90px'); }
+    const b = bgStyle(id); if (b){ el.style.backgroundImage = b.image; el.style.backgroundSize = b.size.replace(/^\d+px \d+px/, m => m.split(' ').map(v => Math.round(parseInt(v)/2)+'px').join(' ')); }
   }
 }
 function openUnlock(kind, id){
@@ -516,7 +745,7 @@ function openUnlock(kind, id){
     <p>${t('unlockText',{p:price, w:starsWord(price)})}</p>
     <div class="wallet">${STAR_SVG()} ${t('youHave',{n:have, w:starsWord(have)})}</div>
     ${ok ? `<button class="btn" data-act="unlock" data-kind="${kind}" data-v="${id}">${t('unlockBtn',{p:price, w:starsWord(price)})}</button>`
-         : `<p>${t('notEnough',{n:price-have, w:starsWord(price-have)})}</p>`}
+         : `<p>${t('notEnough',{n:price-have, w:starsWord(price-have)})}</p><button class="btn" data-act="shop">${t('buyStars')}</button>`}
     <button class="btn ghost" data-act="settings">${t('back')}</button>`);
   paintSwatch($('#unlockPrev'), kind, id);
 }
@@ -550,7 +779,7 @@ function movesWord(n){
   return f[2];
 }
 function applyTheme(){
-  const th = state.bg === 'space' ? 'dark' : state.theme;
+  const th = (state.bg === 'space' || state.bg === 'galaxy') ? 'dark' : state.theme;
   if (th === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = th;
 }
 function applyLang(){
@@ -579,14 +808,71 @@ const ACH = [
   { id:'streak7',  icon:'🔥', reward:100, test:() => P().streak >= 7 }
 ];
 function esc(v){ return String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+const AVKEY = 'blestki-avatar';
+let customAvatar = null;
+try { customAvatar = localStorage.getItem(AVKEY) || null; } catch(e){}
+function loadCloudAvatar(){
+  if (!cloud || customAvatar) return;
+  try { cloud.getItem('avatar', (err, v) => { if (!err && v && v.startsWith('data:image/') && !customAvatar){ customAvatar = v; try { localStorage.setItem(AVKEY, v); } catch(e){} renderAvatars(); } }); } catch(e){}
+}
+function setAvatar(data){
+  customAvatar = data;
+  try { data ? localStorage.setItem(AVKEY, data) : localStorage.removeItem(AVKEY); } catch(e){}
+  try { if (cloud){ data && data.length <= 4096 ? cloud.setItem('avatar', data) : cloud.removeItem('avatar'); } } catch(e){}
+  renderAvatars();
+}
+function processPhoto(file){
+  if (!file) return;
+  const url = URL.createObjectURL(file), img = new Image();
+  img.onload = () => {
+    let out = null;
+    for (const size of [128, 96, 72]){
+      const cv = document.createElement('canvas'); cv.width = cv.height = size;
+      const cx = cv.getContext('2d'), m = Math.min(img.width, img.height);
+      cx.drawImage(img, (img.width-m)/2, (img.height-m)/2, m, m, 0, 0, size, size);
+      for (const q of [.82, .7, .6, .5, .4]){ const d = cv.toDataURL('image/jpeg', q); if (d.length <= 4000){ out = d; break; } }
+      if (out) break;
+    }
+    URL.revokeObjectURL(url);
+    if (!out){ notify(t('photoErr')); return; }
+    setAvatar(out); sfx('unlock'); notify(t('photoSaved')); openProfile();
+  };
+  img.onerror = () => { URL.revokeObjectURL(url); notify(t('photoErr')); };
+  img.src = url;
+}
+function openPhotoSheet(){
+  openSheet(`<h2>${t('photoTitle')}</h2>
+    <div style="display:flex;justify-content:center;margin:6px 0 18px"><span class="avatar lg" style="--av:${avColor()};width:110px;height:110px;font-size:42px">${avatarInner()}</span></div>
+    <button class="btn" data-act="pickPhoto">${t('photoChange')}</button>
+    ${customAvatar ? `<button class="btn ghost" data-act="removePhoto">${t('photoRemove')}</button>` : ''}
+    <button class="btn ghost" data-act="profile">${t('back')}</button>`);
+  bindImgFallback(sheet);
+}
+function openNameSheet(){
+  openSheet(`<h2>${t('editName')}</h2>
+    <input class="text-in" id="nameIn" maxlength="20" autocomplete="off" value="${esc(playerName())}">
+    <button class="btn" data-act="saveName">${t('save')}</button>
+    ${state.name ? `<button class="btn ghost" data-act="resetName">${t('resetName')}</button>` : ''}
+    <button class="btn ghost" data-act="profile">${t('back')}</button>`);
+  const inp = $('#nameIn');
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); saveName(); } });
+  setTimeout(() => { inp.focus(); inp.select(); }, 50);
+}
+function saveName(){
+  const v = ($('#nameIn').value || '').replace(/\s+/g, ' ').trim().slice(0, 20);
+  if (v) state.name = v; else delete state.name;
+  save(); renderAvatars(); notify(t('nameSaved')); openProfile();
+}
 function playerName(){
+  if (state.name) return state.name;
   if (TGU){ const n = [TGU.first_name, TGU.last_name].filter(Boolean).join(' '); return n || TGU.username || t('player'); }
   return t('player');
 }
 function avColor(){ const src = String((TGU && TGU.id) || playerName()); let h = 0; for (const ch of src) h = (h*31 + ch.charCodeAt(0)) % 360; return `hsl(${h},62%,52%)`; }
 function avatarInner(){
   const ini = esc((playerName().trim()[0] || '?').toUpperCase());
-  const img = TGU && TGU.photo_url ? `<img src="${esc(TGU.photo_url)}" alt="">` : '';
+  const src = customAvatar || (TGU && TGU.photo_url);
+  const img = src ? `<img src="${esc(src)}" alt="">` : '';
   return ini + img;
 }
 function bindImgFallback(root){ root.querySelectorAll('img').forEach(i => i.addEventListener('error', () => i.remove())); }
@@ -596,12 +882,16 @@ const today = () => dstr(new Date());
 const yesterday = () => { const d = new Date(); d.setDate(d.getDate()-1); return dstr(d); };
 const dailyAvailable = () => P().lastClaim !== today();
 const nextStreak = () => P().lastClaim === yesterday() ? P().streak + 1 : 1;
-const dailyReward = n => 20 * Math.min(n, 7);
+const DAILY = [{ c:20 }, { c:30 }, { c:40 }, { c:50 }, { c:70 }, { c:90 }, { c:200, s:5 }];
+const dayOf = streak => ((Math.max(1, streak) - 1) % 7) + 1;
+const dailyReward = n => DAILY[dayOf(n) - 1].c;
 
 function renderAvatars(){
   const el = $('#avatarSm'); el.innerHTML = avatarInner(); el.style.setProperty('--av', avColor()); bindImgFallback(el);
   $('#plBadge').textContent = P().pl;
   $('#profileBtn').classList.toggle('has-daily', dailyAvailable());
+  const gb = $('#bonusBtn'); if (gb) gb.classList.toggle('has-dot', wheelAvailable() || tasksReady());
+  if (screen === 'menu') renderMenu();
 }
 const nq = []; let nBusy = false;
 function notify(text){ nq.push(text); if (!nBusy) nextNotice(); }
@@ -614,7 +904,7 @@ function nextNotice(){
 function addXP(n){
   const p = P(); p.xp += n;
   while (p.xp >= need(p.pl)){
-    p.xp -= need(p.pl); p.pl++; const r = 25*p.pl; state.coins += r; notify(t('nLevelUp',{n:p.pl, r}));
+    p.xp -= need(p.pl); p.pl++; const r = 25*p.pl; state.coins += r; sfx('levelup'); notify(t('nLevelUp',{n:p.pl, r}));
     FEATURES.filter(f => f.pl === p.pl).forEach(f => { notify(t('nUnlock',{name:t('f_'+f.id)})); if (f.id==='ice' || f.id==='collect' || f.id==='cage') p.pending = f.id; });
   }
   save(); hud(); renderAvatars();
@@ -622,7 +912,7 @@ function addXP(n){
 function checkAch(){
   const p = P();
   for (const a of ACH){
-    if (!p.ach[a.id] && a.test(p.stats)){ p.ach[a.id] = Date.now(); state.coins += a.reward; notify(t('nAch',{name:t('a_'+a.id), r:a.reward})); }
+    if (!p.ach[a.id] && a.test(p.stats)){ p.ach[a.id] = Date.now(); state.coins += a.reward; sfx('unlock'); notify(t('nAch',{name:t('a_'+a.id), r:a.reward})); }
   }
   save(); hud();
 }
@@ -635,18 +925,40 @@ function finishGame(won){
 function claimDaily(){
   if (!dailyAvailable()) return;
   const p = P(); p.streak = nextStreak(); p.lastClaim = today();
-  const r = dailyReward(p.streak); state.coins += r; save(); hud();
-  notify(t('nDaily',{r})); checkAch(); renderAvatars(); openProfile();
+  const day = dayOf(p.streak), rw = DAILY[day-1];
+  state.coins += rw.c; if (rw.s) state.gstars = (state.gstars||0) + rw.s;
+  save(); hud(); haptic(10);
+  if (rw.s){ sfx('win'); notify(t('nDailyBig',{c:rw.c, s:rw.s})); } else { sfx('coin'); notify(t('nDaily',{r:rw.c})); }
+  checkAch(); renderAvatars(); openDaily(true);
+}
+function openDaily(justClaimed){
+  const p = P(), avail = dailyAvailable();
+  const cur = avail ? dayOf(nextStreak()) : dayOf(p.streak);
+  const cards = DAILY.map((rw,i) => {
+    const d = i+1, big = d === 7;
+    const st = d < cur ? 'got' : d > cur ? 'next' : (avail ? 'today' : 'got');
+    const anim = justClaimed && d === cur ? ' pop-in' : '';
+    return `<div class="dcard ${st}${big ? ' big' : ''}${anim}">
+      <div class="dday">${t('dayN',{n:d})}</div>
+      ${big ? '<div class="dgift">🎁</div>' : ''}
+      <div class="dprize"><span>${COIN}${rw.c}</span>${rw.s ? `<span>${STAR_SVG()}${rw.s}</span>` : ''}</div>
+      ${st === 'got' ? '<div class="dcheck">✓</div>' : ''}</div>`;
+  }).join('');
+  openSheet(`<h2>${t('dailyTitle')}</h2>
+    <p>${t('dailyHint')}</p>
+    <div class="dgrid">${cards}</div>
+    ${avail ? `<button class="btn" data-act="claimDaily">${t('claimNow')}</button>` : `<button class="btn" disabled>${t('comeBack')}</button>`}
+    <button class="btn ghost" data-act="closeDaily">${t('close')}</button>`);
 }
 function openProfile(){
   const p = P(), s = p.stats, nd = need(p.pl), avail = dailyAvailable(), ns = avail ? nextStreak() : p.streak;
   const stat = (v,k) => `<div class="stat"><b>${v}</b><span>${t(k)}</span></div>`;
-  openSheet(`<div class="prof-head"><span class="avatar lg" style="--av:${avColor()}">${avatarInner()}</span>
-      <div><div class="prof-name">${esc(playerName())}</div><div class="prof-rank">${rankName(p.pl)}, ${t('playerLevel',{n:p.pl})}</div><div class="prof-rank">${STAR_SVG()} ${t('youHave',{n:state.gstars||0, w:starsWord(state.gstars||0)})}</div></div></div>
+  openSheet(`<div class="prof-head"><button class="avatar-edit" data-act="photo" aria-label="${t('photoTitle')}"><span class="avatar lg" style="--av:${avColor()}">${avatarInner()}</span><span class="cam">📷</span></button>
+      <div><div class="prof-name">${esc(playerName())} <button class="name-edit" data-act="editName" aria-label="${t('editName')}">✏️</button></div><div class="prof-rank">${rankName(p.pl)}, ${t('playerLevel',{n:p.pl})}</div><div class="prof-rank">${STAR_SVG()} ${t('youHave',{n:state.gstars||0, w:starsWord(state.gstars||0)})}</div></div></div>
     <div class="xp-row">${t('xp')}<span>${p.xp} / ${nd}</span></div>
     <div class="bar"><i style="width:${Math.min(100,p.xp/nd*100)}%"></i></div>
     <div class="daily"><div><b>${t('daily')}</b><small>${avail ? t('dailyDay',{n:ns}) : t('dailyTomorrow',{n:p.streak})}</small></div>
-      <button class="btn" data-act="daily" ${avail?'':'disabled'}>${avail ? t('claim',{r:dailyReward(ns)}) : t('claimed')}</button></div>
+      <button class="btn" data-act="daily">${avail ? t('claim',{r:dailyReward(ns)}) : t('claimed')}</button></div>
     <div class="stat-grid">${stat(state.level-1,'sLevels')}${stat(s.bestScore,'sBest')}${stat(s.popped,'sPopped')}${stat('×'+s.bestCombo,'sCombo')}${stat(s.bombs,'sBombs')}${stat(s.games,'sGames')}</div>
     <h3 class="section-title">${t('roadTitle')}</h3>
     <div class="ach-list" style="margin-bottom:18px">${(() => { const nextF = FEATURES.find(f => f.pl > p.pl);
@@ -661,6 +973,7 @@ function openProfile(){
 let grid = [], nextId = 1;
 const els = new Map();
 let busy = false, ended = false, selected = null, tool = null, drag = null, hintTimer = null;
+let screen = 'game', playLv = 1;
 let cfg = null, curColors = 5, collected = 0, iceGrid = [], iceTotal = 0, cageGrid = [], cageTotal = 0;
 const iceEls = new Map(), cageEls = new Map();
 const caged = (r,c) => !!(cageGrid[r] && cageGrid[r][c] > 0);
@@ -677,6 +990,10 @@ function save(){
 function normalizeState(){
   if (!I18N[state.lang]) state.lang = detectLang();
   if (!state.theme) state.theme = 'auto';
+  if (state.music === undefined) state.music = true;
+  if (state.sfx === undefined) state.sfx = true;
+  if (!state.bgV2){ if (!state.bg || state.bg === 'none') state.bg = 'loc'; state.bgV2 = 1; }
+  if (!state.lvStars) state.lvStars = {};
   state.p = Object.assign({ xp:0, pl:1, streak:0, lastClaim:'', ach:{}, stats:{} }, state.p || {});
   state.p.stats = Object.assign({ wins:0, games:0, popped:0, bestCombo:0, bombs:0, specials:0, bestScore:0, purchases:0, planes:0 }, state.p.stats);
 }
@@ -736,7 +1053,11 @@ const PLANE = `<path d="M12 54 L50 40 L88 54 L88 61 L50 54 L12 61 Z" fill="#FF4D
   <path d="M33 82 L50 75 L67 82 L67 88 L50 84 L33 88 Z" fill="#FF4D5E" stroke="rgba(0,0,0,.25)" stroke-width="2.5" stroke-linejoin="round"/>
   <ellipse cx="50" cy="52" rx="9" ry="36" fill="#fff" stroke="rgba(0,0,0,.25)" stroke-width="2.5"/>
   <ellipse cx="50" cy="28" rx="4.5" ry="7" fill="#3F9BFF"/>`;
+const KEY_SVG = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#3A2A12" stroke="#FFC21A" stroke-width="4"/>
+  <g fill="none" stroke="#FFD24A" stroke-width="8" stroke-linecap="round"><circle cx="36" cy="44" r="12"/><path d="M47 52 L72 74 M62 65 L68 58 M68 71 L74 64"/></g>
+  <circle cx="36" cy="44" r="4" fill="#3A2A12"/><ellipse cx="36" cy="30" rx="10" ry="4" fill="#fff" opacity=".35"/></svg>`;
 function svgFor(tile){
+  if (tile.special === 'key') return KEY_SVG;
   if (tile.special === 'plane'){
     return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#E6F3FF" stroke="rgba(0,0,0,.2)" stroke-width="3.5"/>
       <g transform="rotate(45 50 50) translate(12 12) scale(.76)">${PLANE}</g></svg>`;
@@ -808,24 +1129,23 @@ function paint(tile, el){ const sig = tile.type+':'+tile.special+':'+(tile.timer
 function place(el,r,c){ el.style.transform = `translate(${c*100}%,${r*100}%)`; }
 function render(){ for (let r=0;r<N;r++) for (let c=0;c<N;c++){ const t=grid[r][c]; if(!t) continue; const el=els.get(t.id)||makeEl(t); paint(t,el); place(el,r,c); } }
 function elAt(r,c){ const t=at(r,c); return t && els.get(t.id); }
-function beam(kind,i){ const b=document.createElement('div'); b.className='beam '+kind; if(kind==='row') b.style.top=(i*12.5)+'%'; else b.style.left=(i*12.5)+'%'; boardEl.appendChild(b); setTimeout(()=>b.remove(),450); }
+function beam(kind,i){ sfx('beam'); const b=document.createElement('div'); b.className='beam '+kind; if(kind==='row') b.style.top=(i*12.5)+'%'; else b.style.left=(i*12.5)+'%'; boardEl.appendChild(b); setTimeout(()=>b.remove(),450); }
 function toast(text){ toastEl.textContent=text; toastEl.classList.remove('show'); void toastEl.offsetWidth; toastEl.classList.add('show'); }
 function setSel(cell){ boardEl.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel')); selected=cell; if(cell){ const el=elAt(...cell); el && el.classList.add('sel'); } }
 
 function hud(){
-  $('#level').textContent = t('level',{n:state.level});
+  $('#level').textContent = t('level',{n:playLv}) + ' · ' + WORLDS[worldIdx(playLv)].icon;
   if (cfg){
-    let pct = 0;
-    if (cfg.type==='ice'){ const left = iceLeft(); $('#goal').innerHTML = `<span class="gi">❄️</span> ${t('gIce',{n:left})}`; pct = (iceTotal-left)/iceTotal; }
-    else if (cfg.type==='cage'){ const left = cageLeft(); $('#goal').innerHTML = `<span class="gi">${CAGE_SVG}</span> ${t('gCage',{n:left})}`; pct = (cageTotal-left)/cageTotal; }
-    else if (cfg.type==='collect'){ $('#goal').innerHTML = `<span class="gi"><svg viewBox="0 0 100 100">${candy(cfg.ctype)}</svg></span> ${t('gCollect',{c:Math.min(collected,cfg.count), n:cfg.count})}`; pct = collected/cfg.count; }
-    else { $('#goal').innerHTML = t('goal',{s:score,t:cfg.target}); pct = score/cfg.target; }
+    $('#goal').innerHTML = `<div class="chips">${cfg.goals.map(g => { const [x,y] = goalProgress(g), d = x >= y;
+      return `<span class="chip${d?' done':''}"><span class="gi">${goalIcon(g)}</span>${d ? '✓' : (g.k==='score' ? x+'/'+y : (y-x))}</span>`; }).join('')}</div>`;
+    const pct = cfg.goals.reduce((a,g) => { const [x,y] = goalProgress(g); return a + Math.min(1, y ? x/y : 1); }, 0) / cfg.goals.length;
     $('#bar').style.width = Math.min(100, pct*100) + '%';
   }
   $('#moves').textContent = moves;
   $('#movesLabel').textContent = movesWord(moves);
   $('#movesBox').classList.toggle('low', moves<=5);
   $('#coins').textContent = state.coins;
+  { const mc = $('#mCoins'); if (mc) mc.textContent = state.coins; const ms = $('#mStars'); if (ms) ms.innerHTML = STAR_SVG() + (state.gstars||0); }
   $('#bHammer').classList.toggle('active', tool==='hammer');
   $('#bPlaneB').classList.toggle('active', tool==='plane');
   ['bShuffle','bHammer','bPlaneB'].forEach(id => {
@@ -836,12 +1156,12 @@ function hud(){
 }
 
 /* ---------- turn flow ---------- */
-function nope(cell){ const el = elAt(...cell); if (!el) return; el.classList.remove('nope'); void el.offsetWidth; el.classList.add('nope'); }
+function nope(cell){ sfx('nope'); const el = elAt(...cell); if (!el) return; el.classList.remove('nope'); void el.offsetWidth; el.classList.add('nope'); }
 async function attemptSwap(a,b){
   if (busy || ended || moves<=0 || !inB(b)) return;
   if (caged(...a) || caged(...b)){ setSel(null); nope(caged(...a) ? a : b); toast(t('tCaged')); return; }
   busy = true; clearHint(); setSel(null);
-  swapCells(a,b); render(); await wait(210);
+  swapCells(a,b); render(); sfx('swap'); await wait(210);
   const ta = grid[b[0]][b[1]], tb = grid[a[0]][a[1]];
   if (ta.special==='bomb' || tb.special==='bomb'){
     moves--; hud();
@@ -860,7 +1180,7 @@ async function attemptSwap(a,b){
         set.forEach(k=>{ const t=at(Math.floor(k/N),k%N); if(t && t.type>=0) t.special = Math.random()<.5?'row':'col'; });
       }
     }
-    toast(t('tBoom'));
+    toast(t('tBoom')); sfx('rainbow');
     await resolve(set, null);
   } else if (ta.special==='plane' || tb.special==='plane'){
     moves--; hud();
@@ -899,7 +1219,7 @@ async function resolve(initial, swapPair){
       run.cells.forEach(([r,c]) => claimed.add(key(r,c)));
       creations.push({ r:pos[0], c:pos[1], special:sp });
     }
-    if (combo >= 2) toast(t('tCombo',{n:combo}));
+    if (combo >= 2) if (combo === 3) tb.combo++; sfx('combo', combo); toast(t('tCombo',{n:combo}));
     await clearCells(set, creations, combo);
     await gravity();
     swapPair = null;
@@ -922,7 +1242,7 @@ async function clearCells(set, creations, combo){
       for (const [rr,cc] of cross(r,c)) queue.push(key(rr,cc));
     }
     else if (t.special==='bomb'){
-      bonus+=120;
+      bonus+=120; sfx('rainbow');
       const types=[...new Set(grid.flat().filter(x=>x && x.type>=0).map(x=>x.type))];
       const pick=types[Math.floor(Math.random()*types.length)];
       for (let rr=0;rr<N;rr++) for (let cc=0;cc<N;cc++) if (tt(rr,cc)===pick) queue.push(key(rr,cc));
@@ -933,7 +1253,8 @@ async function clearCells(set, creations, combo){
     if (keep.has(k)) continue;
     const r = Math.floor(k/N), c = k%N, t = at(r,c); if (!t) continue;
     if (caged(r,c)){ cageHits.push([r,c]); continue; }
-    if (cfg && cfg.type==='collect' && t.type===cfg.ctype) collected++;
+    if (t.special==='key'){ continue; }
+    if (t.type >= 0){ prog.color[t.type] = (prog.color[t.type]||0) + 1; tb.color[t.type] = (tb.color[t.type]||0) + 1; }
     grid[r][c] = null; removed++; hit.push([r,c]);
     const el = els.get(t.id);
     if (el){ el.classList.remove('sel','hint'); el.classList.add('shock'); els.delete(t.id); hitEls.push(el); }
@@ -947,15 +1268,15 @@ async function clearCells(set, creations, combo){
     t.special = cr.special; t.timer = 0; if (cr.special==='bomb' || cr.special==='plane') t.type = -1;
     if (cr.special==='bomb') P().stats.bombs++;
     P().stats.specials++;
-    const el = els.get(t.id); if (el){ paint(t,el); el.classList.remove('born'); void el.offsetWidth; el.classList.add('born'); }
+    const el = els.get(t.id); if (el){ paint(t,el); el.classList.remove('born'); void el.offsetWidth; el.classList.add('born'); sfx('special'); }
   }
-  P().stats.popped += removed;
+  P().stats.popped += removed; tb.popped += removed;
   score += removed*10*combo + bonus; hud();
   await wait(240);
   for (const pl of planes){
     const dest = planeTarget(); if (!dest) continue;
-    await fly(pl.from, dest);
-    P().stats.planes++;
+    sfx('plane'); await fly(pl.from, dest); sfx('land');
+    P().stats.planes++; prog.planes++; tb.planes++;
     const tset = new Set(cross(...dest).map(([r,c]) => key(r,c)));
     if (pl.carry === 'row'){ beam('row',dest[0]); for (let i=0;i<N;i++) tset.add(key(dest[0],i)); }
     if (pl.carry === 'col'){ beam('col',dest[1]); for (let i=0;i<N;i++) tset.add(key(i,dest[1])); }
@@ -972,6 +1293,7 @@ function bolt(x1,y1,x2,y2,jag){
   return pts.map(p => p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
 }
 function zap(cells){
+  sfx('zap', cells.length);
   const id = 'zg' + (zapId++), C = ([r,c]) => [c*100+50, r*100+50];
   const rest = cells.slice(1), edges = []; let cur = cells[0];
   while (rest.length){
@@ -1043,15 +1365,27 @@ async function gravity(){
       const j = i - tiles.length;
       const t = { id:nextId++, type:randType(), special:null };
       if (cfg && cfg.timers && Math.random() < 0.025 && countTimers() < 3) t.timer = cfg.timerStart;
+      const kg = cfg && cfg.goals.find(g => g.k==='keys');
+      if (kg && keysSpawned < kg.n && countKeys() < 2 && Math.random() < .08){ t.special = 'key'; t.type = -1; keysSpawned++; }
       grid[r][c] = t; place(makeEl(t), -1-j, c); any = true;
     });
   }
   void boardEl.offsetHeight;
   render();
   if (any) await wait(300);
+  // keys that reached the bottom are collected
+  const got = [];
+  for (let c=0;c<N;c++){ let r = N-1; while (r >= 0 && caged(r,c)) r--; const x = r >= 0 && grid[r][c]; if (x && x.special==='key') got.push([r,c,x]); }
+  if (got.length){
+    for (const [r,c,x] of got){ grid[r][c] = null; prog.keys++; const el = els.get(x.id); if (el){ els.delete(x.id); el.classList.add('pop'); setTimeout(() => el.remove(), 260); } }
+    sfx('unlock'); toast('🔑 +' + got.length); hud();
+    await wait(260); await gravity();
+  }
 }
+function countKeys(){ return grid.flat().filter(x => x && x.special==='key').length; }
 
 async function shuffleBoard(){
+  sfx('shuffle');
   toast(t('tShuffling'));
   const tiles = grid.flat();
   do { tiles.forEach(t => { if (!t.special) t.type = randType(); }); } while (findRuns().length || !findMove());
@@ -1060,6 +1394,7 @@ async function shuffleBoard(){
 }
 
 async function afterMove(consumed = true){
+  flushTasks();
   hud();
   if (goalMet()){ ended = true; win(); }
   else {
@@ -1088,27 +1423,62 @@ function clearHint(){ clearTimeout(hintTimer); boardEl.querySelectorAll('.hint')
 
 /* ---------- levels ---------- */
 function buildConfig(){
-  const L = state.level, p = P(), pl = p.pl, types = ['score'];
+  const L = playLv, p = P(), pl = p.pl, types = ['score'];
   if (pl >= 3) types.push('ice');
   if (pl >= 5) types.push('collect');
   if (pl >= 6) types.push('cage');
   const type = p.pending && types.includes(p.pending) ? p.pending : types[(L-1) % types.length];
   p.pending = null; save();
-  const c = { type, colors: pl >= 4 ? 6 : 5, moves: Math.max(15, 20 - Math.floor((L-1)/6)) };
-  if (type==='score') c.target = targetFor(L);
-  if (type==='ice'){ c.ice = Math.min(28, 8 + L); c.ice2 = pl >= 7; c.moves += 2; }
-  if (type==='cage'){ c.cages = Math.min(16, 6 + Math.floor(L/2)); c.moves += 2; }
-  if (type==='collect'){ c.ctype = Math.floor(Math.random()*c.colors); c.count = Math.min(45, 18 + L*2); }
+  const c = { type, colors: pl >= 4 ? 6 : 5, moves: Math.max(15, 20 - Math.floor((L-1)/6)), goals: [] };
+  const pickColor = () => { let k; do { k = Math.floor(Math.random()*c.colors); } while (c.goals.some(g => g.k==='color' && g.c===k)); return k; };
+  // main goal
+  if (type==='score'){ c.target = targetFor(L); c.goals.push({ k:'score', n:c.target }); }
+  if (type==='ice'){ c.ice = Math.min(28, 8 + L); c.ice2 = pl >= 7; c.moves += 2; c.goals.push({ k:'ice' }); }
+  if (type==='cage'){ c.cages = Math.min(16, 6 + Math.floor(L/2)); c.moves += 2; c.goals.push({ k:'cage' }); }
+  if (type==='collect') c.goals.push({ k:'color', c:pickColor(), n:Math.min(40, 16 + L*2) });
+  // extra goals grow with player level
+  const extra = pl < 2 ? 0 : pl < 5 ? 1 : 2;
+  const pool = ['color','color'];
+  if (pl >= 2) pool.push('planes');
+  if (pl >= 4) pool.push('keys');
+  for (let i=0;i<extra;i++){
+    if (Math.random() < (i===0 ? .85 : .5)){
+      const k = pool[Math.floor(Math.random()*pool.length)];
+      if (k==='color') c.goals.push({ k:'color', c:pickColor(), n:8 + Math.min(14, L) });
+      else if (k==='planes' && !c.goals.some(g => g.k==='planes')) c.goals.push({ k:'planes', n:Math.min(4, 1 + Math.floor(L/8)) });
+      else if (k==='keys' && !c.goals.some(g => g.k==='keys')) c.goals.push({ k:'keys', n:Math.min(3, 1 + Math.floor(L/10)) });
+      c.moves += 2;
+    }
+  }
+  if (type==='score' && c.goals.length > 1){ c.target = Math.round(c.target*.7); c.goals[0].n = c.target; }
   if (pl >= 8 && L % 2 === 0){ c.timers = 2; c.timerStart = Math.max(8, 14 - (pl-8)); }
   return c;
 }
-function goalMet(){
-  if (!cfg) return false;
-  if (cfg.type==='ice') return iceLeft() === 0;
-  if (cfg.type==='cage') return cageLeft() === 0;
-  if (cfg.type==='collect') return collected >= cfg.count;
-  return score >= cfg.target;
+let prog = { color:{}, planes:0, keys:0 }, keysSpawned = 0;
+const tb = { color:{}, popped:0, ice:0, planes:0, combo:0 };
+function flushTasks(){
+  for (const c in tb.color){ if (tb.color[c]) taskBump('color', tb.color[c], +c); tb.color[c] = 0; }
+  for (const k of ['popped','ice','planes','combo']){ if (tb[k]) taskBump(k, tb[k]); tb[k] = 0; }
 }
+function goalProgress(g){
+  if (g.k==='score') return [Math.min(score, g.n), g.n];
+  if (g.k==='ice') return [iceTotal - iceLeft(), iceTotal];
+  if (g.k==='cage') return [cageTotal - cageLeft(), cageTotal];
+  if (g.k==='color') return [Math.min(prog.color[g.c]||0, g.n), g.n];
+  if (g.k==='planes') return [Math.min(prog.planes, g.n), g.n];
+  if (g.k==='keys') return [Math.min(prog.keys, g.n), g.n];
+  return [0,1];
+}
+const goalDone = g => { const [a,b] = goalProgress(g); return a >= b; };
+function goalIcon(g){
+  if (g.k==='score') return '⭐';
+  if (g.k==='ice') return '❄️';
+  if (g.k==='cage') return CAGE_SVG;
+  if (g.k==='color') return `<svg viewBox="0 0 100 100">${candy(g.c)}</svg>`;
+  if (g.k==='planes') return `<svg viewBox="0 0 100 100"><g transform="rotate(45 50 50)">${PLANE}</g></svg>`;
+  if (g.k==='keys') return KEY_SVG;
+}
+function goalMet(){ return !!cfg && cfg.goals.every(goalDone); }
 function countTimers(){ return grid.flat().filter(x => x && x.timer).length; }
 function iceLeft(){ let n = 0; for (const row of iceGrid) for (const v of row) if (v > 0) n++; return n; }
 const CAGE_SVG = (() => { const p = '<rect x="9" y="9" width="82" height="82" rx="18"/><path d="M33 10 V90 M50 10 V90 M67 10 V90 M10 50 H90"/>';
@@ -1119,7 +1489,7 @@ function initCage(){
   cageGrid = Array.from({length:N}, () => Array(N).fill(0)); cageTotal = 0;
   cageEls.forEach(e => e.remove()); cageEls.clear();
   if (!cfg.cages) return;
-  const cells = []; for (let r=0;r<N;r++) for (let c=0;c<N;c++) if (!grid[r][c].timer) cells.push([r,c]);
+  const cells = []; for (let r=0;r<N;r++) for (let c=0;c<N;c++) if (!grid[r][c].timer && !grid[r][c].special) cells.push([r,c]);
   for (let i=0;i<cfg.cages && i<cells.length;i++){
     const j = i + Math.floor(Math.random()*(cells.length-i)); [cells[i],cells[j]] = [cells[j],cells[i]];
     const [r,c] = cells[i]; cageGrid[r][c] = 1;
@@ -1133,7 +1503,7 @@ function initCage(){
 function hitCage(cells){
   for (const [r,c] of cells){
     if (!caged(r,c)) continue;
-    cageGrid[r][c]--;
+    cageGrid[r][c]--; if (cageGrid[r][c] === 0) sfx('cage');
     if (cageGrid[r][c] === 0){ const el = cageEls.get(key(r,c)); if (el){ el.classList.add('gone'); cageEls.delete(key(r,c)); setTimeout(() => el.remove(), 360); } }
   }
 }
@@ -1159,8 +1529,8 @@ function hitIce(cells){
     if (!iceGrid[r] || iceGrid[r][c] <= 0) continue;
     iceGrid[r][c]--;
     const el = iceEls.get(key(r,c)); if (!el) continue;
-    if (iceGrid[r][c] === 0){ el.classList.add('gone'); iceEls.delete(key(r,c)); setTimeout(() => el.remove(), 330); }
-    else { el.classList.remove('hp2','crack'); void el.offsetWidth; el.classList.add('crack'); }
+    if (iceGrid[r][c] === 0){ sfx('iceBreak'); tb.ice++; el.classList.add('gone'); iceEls.delete(key(r,c)); setTimeout(() => el.remove(), 330); }
+    else { sfx('iceCrack'); el.classList.remove('hp2','crack'); void el.offsetWidth; el.classList.add('crack'); }
   }
 }
 function startLevel(){
@@ -1170,39 +1540,57 @@ function startLevel(){
   els.forEach(el => el.remove()); els.clear();
   genBoard();
   if (cfg.timers){ const all = grid.flat(); for (let i=0;i<cfg.timers;i++) all[Math.floor(Math.random()*all.length)].timer = cfg.timerStart; }
+  prog = { color:{}, planes:0, keys:0 }; keysSpawned = 0;
+  const kg = cfg.goals.find(g => g.k==='keys');
+  if (kg){ const cols = [...Array(N).keys()].sort(() => Math.random()-.5); for (let i=0;i<Math.min(kg.n,2);i++){ const x = grid[0][cols[i]]; x.special = 'key'; x.type = -1; x.timer = 0; keysSpawned++; } }
   initIce(); initCage();
   for (let r=0;r<N;r++) for (let c=0;c<N;c++) place(makeEl(grid[r][c]), r-N, c);
   void boardEl.offsetHeight;
   render(); hud(); scheduleHint();
-  if (cfg.type==='ice') notify(t('tIce'));
-  if (cfg.type==='collect') notify(t('tCollect',{n:cfg.count}));
-  if (cfg.type==='cage') notify(t('tCage'));
+  notify(t(cfg.goals.length > 1 ? 'tGoalsMany' : 'tGoalsOne',{n:cfg.goals.length}));
   if (cfg.timers) notify(t('tTimers'));
 }
 function win(){
-  const reward = 20 + state.level*5, doneLevel = state.level;
-  state.coins += reward; state.level++; save();
+  const ev = currentEvent(), main = playLv >= state.level, doneLevel = playLv;
+  let reward = Math.round((20 + playLv*5) * (ev ? 1.5 : 1)); if (!main) reward = Math.round(reward/2);
+  taskBump('wins');
+  state.coins += reward;
+  const ratio = moves / cfg.moves, st = (ratio >= .4 ? 3 : ratio >= .2 ? 2 : 1);
+  if (!state.lvStars) state.lvStars = {};
+  const prev = state.lvStars[playLv] || 0, gain = Math.max(0, st - prev);
+  state.lvStars[playLv] = Math.max(prev, st);
+  let newWorld = false;
+  if (main){ state.level = playLv + 1; newWorld = (state.level - 1) % LPW === 0; }
+  state.gstars = (state.gstars || 0) + gain + (ev && main ? 1 : 0); save();
   $('#coins').textContent = state.coins;
   const xp = finishGame(true);
-  const ratio = moves / cfg.moves, st = ratio >= .4 ? 3 : ratio >= .2 ? 2 : 1;
-  state.gstars = (state.gstars || 0) + st; save();
-  lastEnd = { kind:'win', doneLevel, reward, xp, st };
+  lastEnd = { kind:'win', doneLevel, reward, xp, st, gain, newWorld };
   showWin();
+}
+function openWorldIntro(){
+  const w = WORLDS[worldIdx(state.level)];
+  playLv = state.level; applyBg(); sfx('unlock'); haptic(10);
+  openSheet(`<div class="wintro"><div class="wbig">${w.icon}</div><h2>${t('newWorld')}</h2>
+    <p class="wname">${t('w_'+w.id)}</p><p>${t('worldN',{n:worldNum(state.level)})}. ${t('newWorldText')}</p></div>
+    <button class="btn" data-act="enterWorld">${t('go')}</button>`);
 }
 function showWin(){
   const w = lastEnd;
+  sfx('win'); for (let i=1;i<=w.st;i++) setTimeout(() => sfx('star', i), 450 + i*150);
   openSheet(`<h2>${t('winTitle',{n:w.doneLevel})}</h2>
     <div class="win-stars">${[1,2,3].map(i => STAR_SVG(i <= w.st)).join('')}</div>
-    <p>${t('winText',{s:score,m:moves,mw:movesWord(moves),r:w.reward})} ${t('winStars',{n:w.st})} ${t('winXp',{x:w.xp})}</p>
-    <button class="btn" data-act="next">${t('next')}</button>`);
+    <p>${t('winText',{s:score,m:moves,mw:movesWord(moves),r:w.reward})} ${t('winStars',{n:w.gain})} ${t('winXp',{x:w.xp})}</p>
+    <button class="btn" data-act="next">${t('next')}</button>
+    <button class="btn ghost" data-act="toMap">🗺️ ${t('mapTitle')}</button>`);
 }
 function lose(reason = 'moves'){
   lastEnd = { kind:'lose', reason };
+  sfx(reason === 'timer' ? 'boom' : 'lose');
   if (reason === 'timer'){
     openSheet(`<h2>${t('timerTitle')}</h2><p>${t('loseTimer')}</p><button class="btn" data-act="retry">${t('retry')}</button>`);
     return;
   }
-  const text = cfg.type==='ice' ? t('loseIce',{n:iceLeft()}) : cfg.type==='cage' ? t('loseCage',{n:cageLeft()}) : cfg.type==='collect' ? t('loseCollect',{n:cfg.count-collected}) : t('loseText',{n:cfg.target-score});
+  const text = t('loseGoals') + ' ' + cfg.goals.filter(g => !goalDone(g)).map(g => { const [x,y] = goalProgress(g); return `<span class="gi">${goalIcon(g)}</span>${y-x}`; }).join(' ');
   openSheet(`<h2>${t('loseTitle')}</h2>
     <p>${text}</p>
     <button class="btn" data-act="extra">${t('extra')}</button>
@@ -1212,15 +1600,19 @@ function showEnd(){ if (lastEnd && lastEnd.kind==='win') showWin(); else lose(la
 function openSettings(){
   const grid = (kind, ids, cur) => `<div class="skins${ids.length===5?' bg5':''}">${ids.map(id => { const own = owns(kind,id);
     return `<button class="skin" data-act="pick" data-kind="${kind}" data-v="${id}" aria-pressed="${cur===id}"><span class="sw${own?'':' locked'}" data-kind="${kind}" data-sw="${id}"></span>${itemName(kind,id)}${own ? '' : `<span class="ptag">${STAR_SVG()}${PRICES[kind][id]}</span>`}</button>`; }).join('')}</div>`;
+  const onoff = name => `<div class="seg" role="group" style="grid-template-columns:1fr 1fr">${[[true,t('on')],[false,t('off')]].map(([v,l]) => `<button data-act="snd" data-k="${name}" data-v="${v}" aria-pressed="${!!state[name]===v}">${l}</button>`).join('')}</div>`;
   const seg = (name, items) => `<div class="seg" role="group">${items.map(([v,l])=>`<button data-act="${name}" data-v="${v}" aria-pressed="${state[name]===v}">${l}</button>`).join('')}</div>`;
   openSheet(`<h2>${t('settings')}</h2>
     <div class="field"><div class="field-label">${t('language')}</div>${seg('lang', Object.entries(LANGS))}</div>
+    <div class="field"><div class="field-label">${t('music')}</div>${onoff('music')}</div>
+    <div class="field"><div class="field-label">${t('sounds')}</div>${onoff('sfx')}</div>
     <div class="field"><div class="field-label">${t('theme')}</div>${seg('theme', [['auto',t('themeAuto')],['light',t('themeLight')],['dark',t('themeDark')]])}</div>
-    <div class="wallet">${STAR_SVG()} ${t('youHave',{n:state.gstars||0, w:starsWord(state.gstars||0)})}</div>
+    <div class="wallet">${STAR_SVG()} ${t('youHave',{n:state.gstars||0, w:starsWord(state.gstars||0)})} <button class="pill" data-act="shop" style="margin-left:auto">${t('buyStars')}</button></div>
     <div class="field"><div class="field-label">${t('boardSkin')}</div>${grid('board', Object.keys(SKINS), state.skin)}</div>
     <div class="field"><div class="field-label">${t('appBg')}</div>${grid('bg', Object.keys(BGS), state.bg)}</div>
     <button class="btn" data-act="closeSettings">${t('done')}</button>`);
   sheet.querySelectorAll('[data-sw]').forEach(el => paintSwatch(el, el.dataset.kind, el.dataset.sw));
+  sheet.querySelectorAll('.skins').forEach(row => { const on = row.querySelector('[aria-pressed="true"]'); if (on && on.offsetLeft + on.offsetWidth > row.clientWidth) row.scrollLeft = on.offsetLeft - 8; });
 }
 
 /* ---------- coins & shop ---------- */
@@ -1229,12 +1621,28 @@ function spend(cost){
   state.coins -= cost; save(); hud(); return true;
 }
 function openShop(msg){
+  const have = state.gstars || 0;
+  const pack = (p,i) => `<button class="pack" data-act="buy" data-i="${i}">
+      <span class="pack-coins">${p.coins ? COIN + p.coins : STAR_SVG() + p.gems}${p.tag ? ` <span class="pack-tag">${t(p.tag)}</span>` : ''}</span>
+      <span class="pack-price">${p.stars} ⭐</span></button>`;
   openSheet(`<h2>${t('shopTitle')}</h2>
     <p>${msg || t('shopText')}</p>
-    <div class="packs">${PACKS.map((p,i)=>`<button class="pack" data-act="buy" data-i="${i}">
-      <span class="pack-coins">${COIN}${p.coins}${p.tag?` <span class="pack-tag">${t(p.tag)}</span>`:''}</span>
-      <span class="pack-price">${p.stars} ⭐</span></button>`).join('')}</div>
+    <h3 class="section-title">${t('coinsTitle')}</h3>
+    <div class="packs">${PACKS.map((p,i) => p.coins ? pack(p,i) : '').join('')}</div>
+    <h3 class="section-title" style="margin-top:16px">${t('starsTitle')}</h3>
+    <div class="packs">${PACKS.map((p,i) => p.gems ? pack(p,i) : '').join('')}</div>
+    <h3 class="section-title" style="margin-top:16px">${t('exchTitle')}</h3>
+    <div class="wallet">${STAR_SVG()} ${t('youHave',{n:have, w:starsWord(have)})}</div>
+    <div class="packs">${EXCH.map((x,i) => `<div class="pack exch"><span class="pack-coins">${STAR_SVG()}${x.g} → ${COIN}${x.c}</span>
+      <button class="btn" style="width:auto;padding:8px 14px;font-size:14px" data-act="exch" data-i="${i}" ${have >= x.g ? '' : 'disabled'}>${t('exchBtn')}</button></div>`).join('')}</div>
+    <small class="hint-note" style="margin:10px 0 4px">${t('tgStarsNote')}</small>
     <button class="btn ghost" data-act="close">${t('close')}</button>`);
+}
+function exchange(i){
+  const x = EXCH[i]; if (!x) return;
+  if ((state.gstars||0) < x.g){ notify(t('noStars')); return; }
+  state.gstars -= x.g; state.coins += x.c; save(); hud(); sfx('coin'); haptic(10);
+  notify(t('tCoins',{n:x.c})); openShop();
 }
 let paying = false;
 async function startPurchase(i){
@@ -1254,8 +1662,11 @@ async function startPurchase(i){
     tg.openInvoice(d.link, status => {
       paying = false;
       if (status === 'paid'){
-        state.coins += PACKS[i].coins; P().stats.purchases++; save(); hud(); checkAch(); closeAfterShop();
-        notify(t('tCoins',{n:PACKS[i].coins}));
+        sfx('coin');
+        const pk = PACKS[i];
+        if (pk.coins) state.coins += pk.coins; else state.gstars = (state.gstars||0) + pk.gems;
+        P().stats.purchases++; save(); hud(); checkAch(); closeAfterShop();
+        notify(pk.coins ? t('tCoins',{n:pk.coins}) : t('tGems',{n:pk.gems}));
         try { tg.HapticFeedback.notificationOccurred('success'); } catch(e){}
       }
       else if (status === 'failed') notify(t('payFailed'));
@@ -1263,7 +1674,9 @@ async function startPurchase(i){
     });
   } catch(e){ paying = false; notify(t('payError')); }
 }
+function closeOrEnd(){ if (ended && screen === 'game') showEnd(); else closeSheet(); }
 function closeAfterShop(){
+  if (screen !== 'game'){ closeSheet(); return; }
   if (ended && !goalMet() && moves <= 0 && !(lastEnd && lastEnd.reason==='timer')) lose('moves');
   else if (ended) showEnd();
   else closeSheet();
@@ -1274,12 +1687,17 @@ function closeSheet(){ overlay.classList.remove('open'); }
 sheet.addEventListener('click', e => {
   const b = e.target.closest('[data-act]'); if (!b) return;
   const act = b.dataset.act, i = +b.dataset.i;
-  if (act==='next'){ closeSheet(); startLevel(); }
+  if (act==='next'){ closeSheet(); if (lastEnd && lastEnd.newWorld){ lastEnd.newWorld = false; openWorldIntro(); return; } playLv = state.level; applyBg(); startLevel(); }
+  else if (act==='enterWorld'){ closeSheet(); startLevel(); }
+  else if (act==='toMap'){ closeSheet(); if (lastEnd) lastEnd.newWorld = false; showScreen('map'); }
   else if (act==='retry'){ finishGame(false); closeSheet(); startLevel(); }
-  else if (act==='daily') claimDaily();
-  else if (act==='closeProfile'){ if (ended) showEnd(); else closeSheet(); }
-  else if (act==='extra'){ if (spend(COST.moves)){ moves += 5; ended = false; closeSheet(); hud(); scheduleHint(); } }
+  else if (act==='daily') openDaily();
+  else if (act==='claimDaily') claimDaily();
+  else if (act==='closeDaily'){ closeOrEnd(); }
+  else if (act==='closeProfile'){ closeOrEnd(); }
+  else if (act==='extra'){ if (spend(COST.moves)){ moves += 5; ended = false; sfx('coin'); closeSheet(); hud(); scheduleHint(); } }
   else if (act==='buy') startPurchase(i);
+  else if (act==='exch') exchange(i);
   else if (act==='shop') openShop();
   else if (act==='close') closeAfterShop();
   else if (act==='lang'){ state.lang = b.dataset.v; save(); applyLang(); openSettings(); }
@@ -1294,17 +1712,34 @@ sheet.addEventListener('click', e => {
     if ((state.gstars||0) < price) return;
     state.gstars -= price; state.owned = state.owned || {}; state.owned[kind+':'+id] = true;
     if (kind==='board'){ state.skin = id; applySkin(); } else { state.bg = id; applyBg(); }
-    save(); notify(t('nUnlock',{name:itemName(kind,id)})); openSettings();
+    save(); hud(); sfx('unlock'); notify(t('nUnlock',{name:itemName(kind,id)})); openSettings();
   }
   else if (act==='settings') openSettings();
+  else if (act==='quitYes'){ closeSheet(); quitToMenu(); }
+  else if (act==='quitNo') closeSheet();
+  else if (act==='photo') openPhotoSheet();
+  else if (act==='pickPhoto') $('#photoIn').click();
+  else if (act==='removePhoto'){ setAvatar(null); openProfile(); }
+  else if (act==='editName') openNameSheet();
+  else if (act==='saveName') saveName();
+  else if (act==='resetName'){ delete state.name; save(); renderAvatars(); openProfile(); }
+  else if (act==='profile') openProfile();
+  else if (act==='spin') spinWheel();
+  else if (act==='task') claimTask(i);
+  else if (act==='invite') inviteFriend();
+  else if (act==='closeBonus'){ closeOrEnd(); }
+  else if (act==='snd'){ state[b.dataset.k] = b.dataset.v === 'true'; save(); auUnlock(); musicSync(); renderSound(); if (b.dataset.k==='sfx') sfx('tap'); openSettings(); }
   else if (act==='theme'){ state.theme = b.dataset.v; save(); applyTheme(); openSettings(); }
-  else if (act==='closeSettings'){ if (ended) showEnd(); else closeSheet(); }
+  else if (act==='closeSettings'){ closeOrEnd(); }
 });
 overlay.addEventListener('click', e => { if (e.target === overlay && !ended) closeSheet(); });
 
 /* ---------- boosters ---------- */
 $('#plus').addEventListener('click', () => openShop());
-$('#settings').addEventListener('click', () => openSettings());
+$('#settings').addEventListener('click', () => { sfx('open'); openSettings(); });
+$('#photoIn').addEventListener('change', e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; processPhoto(f); });
+$('#bonusBtn').addEventListener('click', () => { sfx('open'); openBonus(); });
+$('#soundBtn').addEventListener('click', () => { state.music = !state.music; save(); auUnlock(); musicSync(); renderSound(); });
 $('#profileBtn').addEventListener('click', () => openProfile());
 function lockedNotice(b){ if (P().pl < +b.dataset.need){ notify(t('lockedAt',{n:b.dataset.need})); return true; } return false; }
 $('#bShuffle').addEventListener('click', async () => {
@@ -1331,16 +1766,19 @@ function usePlaneBooster(cell){
   const x = at(...cell); if (!x || x.special) return;
   if (caged(...cell)){ nope(cell); toast(t('tCaged')); return; }
   if (!spend(COST.planeB)) return;
+  sfx('special');
   x.special = 'plane'; x.type = -1; x.timer = 0;
   const el = els.get(x.id); if (el){ paint(x, el); el.classList.remove('born'); void el.offsetWidth; el.classList.add('born'); }
   scheduleHint();
 }
 $('#bMoves').addEventListener('click', () => {
   if (busy || ended) return;
-  if (spend(COST.moves)){ moves += 5; hud(); toast(t('tPlus5')); }
+  if (spend(COST.moves)){ moves += 5; hud(); toast(t('tPlus5')); sfx('coin'); }
 });
 async function useHammer(cell){
+  const hx = at(...cell); if (hx && hx.special==='key'){ nope(cell); return; }
   if (!spend(COST.hammer)) return;
+  sfx('hammer');
   busy = true; clearHint(); setSel(null);
   await clearCells(new Set([key(...cell)]), [], 1);
   await gravity();
@@ -1390,7 +1828,312 @@ boardEl.addEventListener('pointermove', e => {
 boardEl.addEventListener('pointerup', () => { if (drag && !drag.moved) tap(drag.cell); drag = null; });
 boardEl.addEventListener('pointercancel', () => { drag = null; });
 
-function boot(){ applyBg(); applySkin(); applyLang(); startLevel(); }
+
+/* ---------- bonuses: wheel, daily tasks, invites, events ---------- */
+const WHEEL = [
+  { kind:'coins', n:10, col:'#FF3B5C' }, { kind:'coins', n:30, col:'#FFC21A' }, { kind:'stars', n:1, col:'#3FD45A' }, { kind:'coins', n:20, col:'#2F8CFF' },
+  { kind:'coins', n:50, col:'#A855F7' }, { kind:'coins', n:15, col:'#FF8A1F' }, { kind:'stars', n:3, col:'#FF3B5C' }, { kind:'coins', n:100, col:'#2F8CFF' }
+];
+const WHEEL_W = [22, 16, 14, 20, 9, 22, 3, 4];
+const wheelAvailable = () => state.wheelDay !== today();
+function wheelSVG(){
+  const n = WHEEL.length, R = 100; let g = '';
+  WHEEL.forEach((w,i) => {
+    const a1 = (i/n)*2*Math.PI - Math.PI/2, a2 = ((i+1)/n)*2*Math.PI - Math.PI/2, am = (a1+a2)/2;
+    g += `<path d="M110 110 L${(110+R*Math.cos(a1)).toFixed(1)} ${(110+R*Math.sin(a1)).toFixed(1)} A${R} ${R} 0 0 1 ${(110+R*Math.cos(a2)).toFixed(1)} ${(110+R*Math.sin(a2)).toFixed(1)}Z" fill="${w.col}" stroke="#fff" stroke-width="2"/>`;
+    const tx = 110 + 66*Math.cos(am), ty = 110 + 66*Math.sin(am);
+    g += `<text x="${tx.toFixed(1)}" y="${(ty+6).toFixed(1)}" text-anchor="middle" font-size="17" font-weight="900" fill="#fff" stroke="rgba(0,0,0,.35)" stroke-width="3" paint-order="stroke" transform="rotate(${(am*180/Math.PI+90).toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})" font-family="Nunito,system-ui,sans-serif">${w.kind==='stars' ? '★'+w.n : w.n}</text>`;
+  });
+  return `<svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="106" fill="#1A1440"/>${g}<circle cx="110" cy="110" r="16" fill="#fff" stroke="#1A1440" stroke-width="4"/></svg>`;
+}
+let spinning = false;
+async function spinWheel(){
+  if (spinning || !wheelAvailable()) return;
+  spinning = true;
+  let r = Math.random() * WHEEL_W.reduce((a,b) => a+b, 0), idx = 0;
+  while ((r -= WHEEL_W[idx]) > 0) idx++;
+  state.wheelDay = today(); save();
+  const el = $('#wheelDisc'), seg = 360 / WHEEL.length;
+  const deg = 360*5 + (360 - (idx*seg + seg/2));
+  sfx('shuffle');
+  if (el){ el.style.transition = 'transform 3.6s cubic-bezier(.15,.9,.2,1)'; el.style.transform = `rotate(${deg}deg)`; }
+  const ticks = setInterval(() => sfx('tap'), 180);
+  await wait(3700); clearInterval(ticks);
+  const w = WHEEL[idx];
+  if (w.kind==='coins') state.coins += w.n; else state.gstars = (state.gstars||0) + w.n;
+  save(); hud(); sfx('win'); haptic(10);
+  notify(t('wheelWon',{p: w.kind==='coins' ? t('tCoins',{n:w.n}) : '★ +'+w.n}));
+  spinning = false; renderAvatars(); openBonus();
+}
+// daily tasks: three per day, the same for the whole day
+function dayRand(seed){ let x = 0; for (const ch of today()+seed) x = (x*31 + ch.charCodeAt(0)) >>> 0; return () => { x = (x*1103515245 + 12345) >>> 0; return x / 4294967296; }; }
+function dailyTasks(){
+  if (state.daily && state.daily.date === today()) return state.daily.tasks;
+  const rnd = dayRand('t'), pl = P().pl, pool = [
+    () => ({ k:'color', c:Math.floor(rnd()*5), n:40 + Math.floor(rnd()*4)*10, r:30 }),
+    () => ({ k:'wins', n:2 + Math.floor(rnd()*3), r:40 }),
+    () => ({ k:'combo', n:3 + Math.floor(rnd()*3), r:30 }),
+    () => ({ k:'popped', n:150 + Math.floor(rnd()*4)*50, r:30 })
+  ];
+  if (pl >= 2) pool.push(() => ({ k:'planes', n:3 + Math.floor(rnd()*3), r:40 }));
+  if (pl >= 3) pool.push(() => ({ k:'ice', n:15 + Math.floor(rnd()*3)*5, r:40 }));
+  const tasks = [], used = new Set();
+  while (tasks.length < 3){ const i = Math.floor(rnd()*pool.length); if (used.has(i)) continue; used.add(i); tasks.push(Object.assign(pool[i](), { p:0, done:false })); }
+  state.daily = { date: today(), tasks }; save();
+  return tasks;
+}
+function taskBump(k, n = 1, c){
+  const ts = dailyTasks(); let changed = false;
+  for (const x of ts){ if (x.k===k && !x.done && (k!=='color' || x.c===c)){ const before = x.p; x.p = Math.min(x.n, x.p + n); if (x.p >= x.n && before < x.n){ sfx('levelup'); notify(t('taskReady')); } changed = true; } }
+  if (changed){ save(); renderAvatars(); }
+}
+const tasksReady = () => dailyTasks().some(x => x.p >= x.n && !x.done);
+function taskText(x){ return x.k==='color' ? t('task_color',{n:x.n}) : t('task_'+x.k,{n:x.n}); }
+function claimTask(i){ const x = dailyTasks()[i]; if (!x || x.done || x.p < x.n) return; x.done = true; state.coins += x.r; save(); hud(); sfx('coin'); notify(t('tCoins',{n:x.r})); renderAvatars(); openBonus(); }
+// seasonal events: extra star per win and +50% coins
+const EVENTS = [
+  { id:'autumn', from:'11-01', to:'11-30', icon:'🍂' }, { id:'winter', from:'12-01', to:'01-15', icon:'❄️' },
+  { id:'love', from:'02-07', to:'02-16', icon:'💝' }, { id:'spring', from:'04-01', to:'04-30', icon:'🌸' }, { id:'summer', from:'07-01', to:'07-31', icon:'☀️' }
+];
+function currentEvent(){
+  const d = new Date(), md = String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  return EVENTS.find(e => e.from <= e.to ? (md >= e.from && md <= e.to) : (md >= e.from || md <= e.to)) || null;
+}
+// invites: shared link carries the inviter id, the newcomer gets a welcome gift once
+const BOT_LINK = 'https://t.me/sugar_shock_bot/play';
+function inviteFriend(){
+  const id = (TGU && TGU.id) || 0, link = BOT_LINK + (id ? '?startapp=ref_' + id : '');
+  const url = 'https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(t('inviteText'));
+  sfx('open');
+  try { if (tg && tg.openTelegramLink){ tg.openTelegramLink(url); return; } } catch(e){}
+  window.open(url, '_blank');
+}
+function checkReferral(){
+  const sp = tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param;
+  if (!sp || !/^ref_\d+$/.test(sp) || state.refUsed) return;
+  if (TGU && sp === 'ref_' + TGU.id) return;
+  state.refUsed = sp; state.coins += 100; save(); hud();
+  notify(t('welcomeGift',{n:100}));
+}
+function openBonus(){
+  const ev = currentEvent(), wa = wheelAvailable(), ts = dailyTasks();
+  openSheet(`<h2>${t('bonusTitle')}</h2>
+    ${ev ? `<div class="event"><span class="ico">${ev.icon}</span><div><b>${t('ev_'+ev.id)}</b><small>${t('evText')}</small></div></div>` : ''}
+    <h3 class="section-title">${t('wheelTitle')}</h3>
+    <div class="wheel-wrap"><div class="wheel-ptr"></div><div class="wheel" id="wheelDisc">${wheelSVG()}</div></div>
+    <button class="btn" data-act="spin" ${wa ? '' : 'disabled'}>${wa ? t('spin') : t('spinTomorrow')}</button>
+    <h3 class="section-title" style="margin-top:18px">${t('tasksTitle')}</h3>
+    <div class="ach-list">${ts.map((x,i) => `<div class="ach ${x.done ? 'done' : ''}"><span class="ico">${x.k==='color' ? `<svg viewBox="0 0 100 100" style="width:30px;height:30px">${candy(x.c)}</svg>` : {wins:'🏆',combo:'⚡',popped:'🍬',planes:'✈️',ice:'❄️'}[x.k]}</span>
+      <div style="flex:1"><div class="ach-name">${taskText(x)}</div><div class="bar" style="margin-top:6px"><i style="width:${x.p/x.n*100}%"></i></div></div>
+      ${x.done ? '<span class="ach-rew">✓</span>' : x.p >= x.n ? `<button class="btn" style="width:auto;padding:8px 12px;font-size:14px" data-act="task" data-i="${i}">+${x.r}</button>` : `<span class="ach-rew">${x.p}/${x.n}</span>`}</div>`).join('')}</div>
+    <h3 class="section-title" style="margin-top:18px">${t('friendsTitle')}</h3>
+    <p>${t('friendsText')}</p>
+    <button class="btn" data-act="invite">${t('inviteBtn')}</button>
+    <button class="btn ghost" data-act="closeBonus">${t('close')}</button>`);
+}
+
+/* ---------- screens: menu & map ---------- */
+function showScreen(name){
+  screen = name;
+  $('#menu').hidden = name !== 'menu';
+  $('#mapScr').hidden = name !== 'map';
+  if (name === 'menu') renderMenu();
+  if (name === 'map') renderMap();
+  try { if (tg && tg.BackButton){ name === 'menu' ? tg.BackButton.hide() : tg.BackButton.show(); } } catch(e){}
+  applyBg();
+}
+function renderMenu(){
+  const L = state.level, w = WORLDS[worldIdx(L)], within = (L-1) % LPW;
+  const av = $('#mAvatar'); av.innerHTML = avatarInner(); av.style.setProperty('--av', avColor()); bindImgFallback(av);
+  $('#mName').textContent = playerName();
+  $('#mCoins').textContent = state.coins;
+  $('#mStars').innerHTML = STAR_SVG() + (state.gstars||0);
+  $('#mHero').innerHTML = [0,1,2,3,4].map(i => `<svg viewBox="0 0 100 100">${candy((i + worldIdx(L)) % 6)}</svg>`).join('');
+  $('#mWorld').innerHTML = `<span class="wico">${w.icon}</span><div class="wtxt"><b>${t('w_'+w.id)}</b><small>${t('worldN',{n:worldNum(L)})} · ${within}/${LPW}</small><div class="bar"><i style="width:${within/LPW*100}%"></i></div></div>`;
+  $('#mPlay').textContent = '▶ ' + t('continue',{n:L});
+}
+function renderMap(){
+  const L = state.level, worlds = Math.max(WORLDS.length, worldNum(L) + 1), H = 72;
+  let html = '', totalStars = 0;
+  if (!state.lvStars) state.lvStars = {};
+  for (const v of Object.values(state.lvStars)) totalStars += v;
+  $('#mapStars').innerHTML = STAR_SVG() + totalStars;
+  for (let wn = 1; wn <= worlds; wn++){
+    const wi = (wn-1) % WORLDS.length, w = WORLDS[wi], first = (wn-1)*LPW + 1, locked = first > L;
+    let wst = 0, pts = [], nodes = '';
+    for (let k=0;k<LPW;k++){
+      const lv = first + k, x = 50 + 30*Math.sin(k*1.1 + wn*.7), y = 36 + k*H, st = state.lvStars[lv] || 0;
+      wst += st; pts.push(`${x.toFixed(1)},${y}`);
+      const cls = lv < L ? 'done' : lv === L ? 'cur' : 'locked';
+      const stars = cls === 'done' ? `<span class="ns">${[1,2,3].map(i => STAR_SVG(i <= st)).join('')}</span>` : '';
+      const me = cls === 'cur' ? `<span class="avatar nav" style="--av:${avColor()}">${avatarInner()}</span>` : '';
+      nodes += `<button class="node ${cls}" style="left:${x.toFixed(1)}%;top:${y}px" ${cls==='locked' ? 'disabled' : `data-lv="${lv}"`}>${cls==='locked' ? '🔒' : lv}${stars}${me}</button>`;
+    }
+    const hgt = 36*2 + (LPW-1)*H;
+    const bg = locBg(wi);
+    html += `<section class="wsec${locked ? ' locked' : ''}" style="background-image:${bg.image.replace(/"/g,"'")};background-size:${bg.size}">
+      <div class="whead"><span class="wico">${w.icon}</span><div><b>${t('w_'+w.id)}</b><small>${t('worldN',{n:wn})} · ${STAR_SVG()} ${wst}/${LPW*3}</small></div></div>
+      ${locked ? `<div class="wlock">🔒 ${t('worldLocked',{n:first-1})}</div>` : ''}
+      <div class="path" style="height:${hgt}px"><svg class="trail" viewBox="0 0 100 ${hgt}" preserveAspectRatio="none"><polyline points="${pts.join(' ')}" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>${nodes}</div>
+    </section>`;
+  }
+  $('#mapList').innerHTML = html;
+  bindImgFallback($('#mapList'));
+  const cur = $('#mapList .node.cur'); if (cur) setTimeout(() => cur.scrollIntoView({ block:'center' }), 30);
+}
+function playLevel(lv){
+  playLv = lv; showScreen('game'); startLevel(); sfx('open');
+}
+$('#menu').addEventListener('click', e => {
+  const b = e.target.closest('[data-m]'); if (!b) return;
+  const m = b.dataset.m; sfx('tap');
+  if (m === 'play'){ if (ended || playLv !== state.level || !cfg){ playLevel(state.level); } else showScreen('game'); }
+  else if (m === 'map') showScreen('map');
+  else if (m === 'bonus') openBonus();
+  else if (m === 'profile') openProfile();
+  else if (m === 'settings') openSettings();
+  else if (m === 'topup') openShop();
+});
+$('#mapScr').addEventListener('click', e => {
+  const n = e.target.closest('.node[data-lv]'); if (n){ playLevel(+n.dataset.lv); return; }
+  const b = e.target.closest('[data-m="back"]'); if (b){ sfx('tap'); showScreen('menu'); }
+});
+function quitToMenu(){ ended = true; busy = false; setSel(null); tool = null; clearHint(); hud(); showScreen('menu'); }
+function askQuit(){
+  if (busy) return;
+  sfx('tap');
+  const untouched = !ended && cfg && moves === cfg.moves && score === 0;
+  if (ended || untouched){ if (untouched){ setSel(null); tool = null; hud(); showScreen('menu'); } else quitToMenu(); return; }
+  openSheet(`<h2>${t('quitTitle')}</h2><p>${t('quitText')}</p>
+    <button class="btn danger" data-act="quitYes">${t('quitYes')}</button>
+    <button class="btn ghost" data-act="quitNo">${t('quitNo')}</button>`);
+}
+$('#homeBtn').addEventListener('click', askQuit);
+if (tg && tg.BackButton){
+  try { tg.BackButton.onClick(() => {
+    if (overlay.classList.contains('open')){ closeOrEnd(); return; }
+    if (screen === 'game') askQuit(); else if (screen === 'map') showScreen('menu');
+  }); } catch(e){}
+}
+
+/* ---------- audio: soft generative music + sound effects (Web Audio, no files) ---------- */
+const AU = { ctx:null, master:null, mus:null, fx:null, timer:null, step:0, chord:0 };
+function auInit(){
+  if (AU.ctx) return AU.ctx;
+  const C = window.AudioContext || window.webkitAudioContext; if (!C) return null;
+  const ctx = new C(); AU.ctx = ctx;
+  AU.master = ctx.createGain(); AU.master.gain.value = .9; AU.master.connect(ctx.destination);
+  AU.mus = ctx.createGain(); AU.mus.gain.value = 0;
+  const dl = ctx.createDelay(1), fb = ctx.createGain(), wet = ctx.createGain(), lp = ctx.createBiquadFilter();
+  dl.delayTime.value = .42; fb.gain.value = .32; wet.gain.value = .28; lp.type = 'lowpass'; lp.frequency.value = 2400;
+  AU.mus.connect(lp); lp.connect(AU.master); lp.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(AU.master);
+  AU.fx = ctx.createGain(); AU.fx.gain.value = .55; AU.fx.connect(AU.master);
+  return ctx;
+}
+const hz = m => 440 * Math.pow(2, (m-69)/12);
+function tone(dest, freq, at, dur, o = {}){
+  const ctx = AU.ctx, osc = ctx.createOscillator(), g = ctx.createGain();
+  osc.type = o.type || 'sine'; osc.frequency.setValueAtTime(freq, at);
+  if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, at + dur);
+  const v = o.vol == null ? .2 : o.vol;
+  g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(v, at + (o.att || .008)); g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+  osc.connect(g); g.connect(dest); osc.start(at); osc.stop(at + dur + .05);
+}
+function noise(dest, at, dur, o = {}){
+  const ctx = AU.ctx, len = Math.max(1, Math.floor(ctx.sampleRate * dur)), buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
+  for (let i=0;i<len;i++) d[i] = (Math.random()*2-1) * (o.crackle ? (Math.random() < .12 ? 1 : .15) : 1);
+  const src = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+  src.buffer = buf; f.type = o.filter || 'bandpass'; f.frequency.setValueAtTime(o.f || 2000, at); if (o.fTo) f.frequency.exponentialRampToValueAtTime(o.fTo, at + dur); f.Q.value = o.q || 1;
+  const v = o.vol || .2; g.gain.setValueAtTime(v, at); g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
+  src.connect(f); f.connect(g); g.connect(dest); src.start(at);
+}
+// calm lo-fi: warm jazzy 7th chords, soft bass, brushed hats, sparse melody
+const CHORDS = [[53,57,60,64],[52,55,59,62],[50,53,57,60],[48,52,55,59]];   // Fmaj7, Em7, Dm7, Cmaj7
+const BASS = [41,40,38,36];
+const MEL = [72,74,76,79,81,84];
+function epiano(m, at, dur, vol){
+  tone(AU.mus, hz(m), at, dur, { vol, att:.012 });
+  tone(AU.mus, hz(m)*1.003, at, dur*.8, { vol:vol*.5, att:.012, type:'triangle' });
+  tone(AU.mus, hz(m)*2, at, .35, { vol:vol*.18, att:.004 });
+}
+function musicTick(){
+  const ctx = AU.ctx; if (!ctx) return;
+  const st = AU.step % 8, swing = st % 2 ? .07 : 0, t0 = ctx.currentTime + .05 + swing;
+  const ch = CHORDS[AU.chord % CHORDS.length];
+  if (st === 0){
+    ch.forEach((m,i) => epiano(m, t0 + i*.025, 2.6, .028));
+    tone(AU.mus, hz(BASS[AU.chord % BASS.length]), t0, 1.4, { vol:.07, att:.02 });
+  }
+  if (st === 4){
+    ch.slice(1).forEach((m,i) => epiano(m, t0 + i*.02, 1.5, .016));
+    tone(AU.mus, hz(BASS[AU.chord % BASS.length] + 7), t0, .9, { vol:.045, att:.02 });
+  }
+  // soft kick and brushed hats, kept very quiet
+  if (st === 0 || st === 5) tone(AU.mus, 110, t0, .25, { vol:.05, to:45, att:.004 });
+  if (st === 2 || st === 6) noise(AU.mus, t0, .12, { f:1800, q:.7, vol:.018 });
+  if (st % 2 === 1) noise(AU.mus, t0, .05, { filter:'highpass', f:7000, vol:.009 });
+  // sparse melody
+  if (st % 2 === 0 && Math.random() < .28){
+    const m = MEL[Math.floor(Math.random()*MEL.length)];
+    tone(AU.mus, hz(m), t0, 1.1, { vol:.03, att:.02 });
+  }
+  AU.step++; if (AU.step % 8 === 0) AU.chord++;
+}
+function musicSync(){
+  if (!AU.ctx) return;
+  const on = state.music && !document.hidden;
+  const g = AU.mus.gain, now = AU.ctx.currentTime;
+  g.cancelScheduledValues(now); g.setTargetAtTime(on ? 1 : 0, now, .6);
+  if (on && !AU.timer){ musicTick(); AU.timer = setInterval(musicTick, 375); }
+  if (!on && AU.timer){ const tm = AU.timer; AU.timer = null; setTimeout(() => { if (!AU.timer) clearInterval(tm); }, 1500); }
+}
+function auUnlock(){
+  const ctx = auInit(); if (!ctx) return;
+  if (ctx.state === 'suspended') ctx.resume();
+  musicSync();
+}
+document.addEventListener('pointerdown', auUnlock, { capture:true });
+document.addEventListener('visibilitychange', () => { if (!AU.ctx) return; if (document.hidden) AU.ctx.suspend(); else { AU.ctx.resume(); } musicSync(); });
+function sfx(name, n = 1){
+  if (!state.sfx || !AU.ctx || AU.ctx.state !== 'running') return;
+  const t = AU.ctx.currentTime + .01, D = AU.fx;
+  switch (name){
+    case 'tap': tone(D, 880, t, .06, { vol:.08, type:'triangle' }); break;
+    case 'swap': tone(D, 520, t, .09, { vol:.12, type:'triangle', to:780 }); noise(D, t, .04, { f:3500, vol:.05 }); break;
+    case 'nope': tone(D, 220, t, .12, { vol:.12, type:'square', to:180 }); tone(D, 196, t+.09, .14, { vol:.1, type:'square', to:160 }); break;
+    case 'zap': {
+      const k = Math.min(n, 12);
+      noise(D, t, .22 + k*.012, { f:2600, fTo:900, q:.8, vol:.16 + k*.008, crackle:true });
+      tone(D, 1200 + Math.random()*300, t, .12, { vol:.05, type:'sawtooth', to:300 });
+      for (let i=0;i<3;i++) noise(D, t + .03 + i*.05, .03, { f:5000, q:4, vol:.06 });
+      break; }
+    case 'combo': [0,4,7,12].slice(0, Math.min(4, n)).forEach((s,i) => tone(D, hz(72 + Math.min(n,6) + s), t + i*.06, .25, { vol:.1, type:'triangle' })); break;
+    case 'special': tone(D, hz(79), t, .3, { vol:.1 }); tone(D, hz(86), t+.07, .35, { vol:.09 }); tone(D, hz(91), t+.14, .45, { vol:.08 }); break;
+    case 'beam': noise(D, t, .35, { filter:'highpass', f:1200, fTo:6000, vol:.12 }); tone(D, 300, t, .3, { vol:.08, type:'sawtooth', to:1600 }); break;
+    case 'rainbow': [0,3,7,10,14,17,21].forEach((s,i) => tone(D, hz(72+s), t + i*.045, .4, { vol:.08, type:'triangle' })); noise(D, t, .5, { f:1800, fTo:200, vol:.12 }); break;
+    case 'plane': noise(D, t, .55, { f:600, fTo:2600, q:2.5, vol:.14 }); tone(D, 380, t, .5, { vol:.05, to:900 }); break;
+    case 'land': noise(D, t, .18, { filter:'lowpass', f:900, fTo:120, vol:.22 }); tone(D, 140, t, .2, { vol:.15, to:60 }); break;
+    case 'iceCrack': noise(D, t, .08, { f:4200, q:6, vol:.14 }); tone(D, 2600, t, .06, { vol:.05, to:1800 }); break;
+    case 'iceBreak': for (let i=0;i<4;i++){ noise(D, t + i*.03, .1, { f:3000 + i*700, q:5, vol:.1 }); tone(D, 2000 + Math.random()*1800, t + i*.04, .15, { vol:.04 }); } break;
+    case 'cage': tone(D, 320, t, .35, { vol:.12, type:'square', to:260 }); tone(D, 480, t+.02, .3, { vol:.06, type:'triangle' }); noise(D, t, .2, { f:1500, q:8, vol:.1 }); break;
+    case 'hammer': noise(D, t, .15, { filter:'lowpass', f:700, vol:.3 }); tone(D, 160, t, .18, { vol:.2, to:70 }); break;
+    case 'shuffle': for (let i=0;i<6;i++) tone(D, 500 + Math.random()*600, t + i*.04, .07, { vol:.06, type:'triangle' }); break;
+    case 'coin': tone(D, hz(83), t, .12, { vol:.1, type:'square' }); tone(D, hz(88), t+.08, .3, { vol:.1, type:'square' }); break;
+    case 'win': [60,64,67,72,76,79].forEach((m,i) => tone(D, hz(m+12), t + i*.09, .5, { vol:.1, type:'triangle' })); break;
+    case 'star': tone(D, hz(84 + n*2), t, .35, { vol:.1 }); tone(D, hz(91 + n*2), t+.05, .3, { vol:.06 }); break;
+    case 'lose': [67,64,60,55].forEach((m,i) => tone(D, hz(m), t + i*.14, .4, { vol:.09, type:'triangle' })); break;
+    case 'boom': noise(D, t, .6, { filter:'lowpass', f:1200, fTo:80, vol:.35 }); tone(D, 90, t, .5, { vol:.25, to:35 }); break;
+    case 'levelup': [72,76,79,84].forEach((m,i) => tone(D, hz(m), t + i*.08, .35, { vol:.1, type:'square' })); break;
+    case 'unlock': tone(D, hz(76), t, .2, { vol:.1 }); tone(D, hz(83), t+.1, .2, { vol:.1 }); tone(D, hz(88), t+.2, .6, { vol:.12 }); break;
+    case 'open': tone(D, 600, t, .08, { vol:.06, type:'triangle', to:900 }); break;
+  }
+}
+const SPK_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const SPK_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="m16 9 5 6M21 9l-5 6"/></svg>';
+function renderSound(){ const b = $('#soundBtn'); if (b){ b.innerHTML = state.music ? SPK_ON : SPK_OFF; b.setAttribute('aria-pressed', state.music ? 'true' : 'false'); } }
+
+function boot(){ normalizeState(); if (state.music === undefined) state.music = true; if (state.sfx === undefined) state.sfx = true; playLv = state.level; applyBg(); applySkin(); applyLang(); renderSound(); startLevel(); showScreen('menu'); checkReferral(); loadCloudAvatar();
+  if (dailyAvailable() && state.dailyShown !== today()){ state.dailyShown = today(); save(); setTimeout(() => { if (!overlay.classList.contains('open')) openDaily(); }, 900); } }
 if (cloud){
   let done = false;
   const go = () => { if (!done){ done = true; boot(); } };

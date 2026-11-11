@@ -1,4 +1,4 @@
-// Sugar Shock ⚡ payments worker (Cloudflare Workers)
+// Candy Shock ⚡ payments worker (Cloudflare Workers)
 //
 // Variables to set in Cloudflare (Settings → Variables and Secrets):
 //   BOT_TOKEN       secret  token from @BotFather
@@ -6,23 +6,26 @@
 //   APP_URL         text    address of the game, e.g. https://sugar-shock.netlify.app
 //   SUPPORT         text    contact for payment questions, e.g. @your_username
 //
-// Packs must match PACKS in index.html (stars price → coins).
+// Packs must match PACKS in index.html (Telegram Stars price → coins or in-game stars).
 const PACKS = [
   { stars: 50,  coins: 120 },
   { stars: 150, coins: 400 },
   { stars: 400, coins: 1200 },
+  { stars: 25,  gems: 10 },
+  { stars: 75,  gems: 35 },
+  { stars: 200, gems: 100 },
 ];
 
 const TEXT = {
-  uk: { title: '{c} монет', desc: 'Монети для гри Sugar Shock ⚡: бустери та додаткові ходи.',
-        start: 'Привіт! Sugar Shock ⚡ це солодкий match-3, де цукерки б’є струмом. Натисни кнопку, щоб грати.',
-        play: '🍬 Грати', thanks: 'Дякуємо за покупку! Монети вже у грі ⚡', support: 'Питання щодо оплати? Напишіть: {s}' },
-  ru: { title: '{c} монет', desc: 'Монеты для игры Sugar Shock ⚡: бустеры и дополнительные ходы.',
-        start: 'Привет! Sugar Shock ⚡ это сладкий match-3, где конфеты бьёт током. Нажми кнопку, чтобы играть.',
-        play: '🍬 Играть', thanks: 'Спасибо за покупку! Монеты уже в игре ⚡', support: 'Вопрос по оплате? Напишите: {s}' },
-  en: { title: '{c} coins', desc: 'Coins for Sugar Shock ⚡: boosters and extra moves.',
-        start: 'Hi! Sugar Shock ⚡ is a sweet match-3 where candies get zapped. Tap the button to play.',
-        play: '🍬 Play', thanks: 'Thanks for your purchase! The coins are already in the game ⚡', support: 'Payment question? Contact: {s}' },
+  uk: { title: '{c} монет', titleG: '{g} ігрових зірок', descG: 'Ігрові зірки для Candy Shock ⚡: нові дошки, фони та обмін на монети.', desc: 'Монети для гри Candy Shock ⚡: бустери та додаткові ходи.',
+        start: 'Привіт! Candy Shock ⚡ це солодкий match-3, де цукерки б’є струмом. Натисни кнопку, щоб грати.',
+        play: '🍬 Грати', thanks: 'Дякуємо за покупку! Покупка вже у грі ⚡', support: 'Питання щодо оплати? Напишіть: {s}' },
+  ru: { title: '{c} монет', titleG: '{g} игровых звёзд', descG: 'Игровые звёзды для Candy Shock ⚡: новые доски, фоны и обмен на монеты.', desc: 'Монеты для игры Candy Shock ⚡: бустеры и дополнительные ходы.',
+        start: 'Привет! Candy Shock ⚡ это сладкий match-3, где конфеты бьёт током. Нажми кнопку, чтобы играть.',
+        play: '🍬 Играть', thanks: 'Спасибо за покупку! Покупка уже в игре ⚡', support: 'Вопрос по оплате? Напишите: {s}' },
+  en: { title: '{c} coins', titleG: '{g} game stars', descG: 'Game stars for Candy Shock ⚡: new boards, backgrounds and swaps for coins.', desc: 'Coins for Candy Shock ⚡: boosters and extra moves.',
+        start: 'Hi! Candy Shock ⚡ is a sweet match-3 where candies get zapped. Tap the button to play.',
+        play: '🍬 Play', thanks: 'Thanks for your purchase! Your purchase is already in the game ⚡', support: 'Payment question? Contact: {s}' },
 };
 const pickLang = code => (code || '').startsWith('uk') ? 'uk' : (code || '').startsWith('ru') ? 'ru' : 'en';
 
@@ -40,7 +43,7 @@ export default {
     if (req.method === 'OPTIONS') return new Response(null, { headers: CORS });
     if (req.method === 'POST' && url.pathname === '/invoice') return createInvoice(req, env);
     if (req.method === 'POST' && url.pathname === '/webhook') return handleUpdate(req, env);
-    return new Response('Sugar Shock payments: OK');
+    return new Response('Candy Shock payments: OK');
   },
 };
 
@@ -61,10 +64,10 @@ async function createInvoice(req, env) {
   if (!pack) return json({ error: 'unknown pack' }, 400);
 
   const T = TEXT[pickLang(user.language_code)];
-  const title = T.title.replace('{c}', pack.coins);
+  const title = pack.coins ? T.title.replace('{c}', pack.coins) : T.titleG.replace('{g}', pack.gems);
   const res = await api(env, 'createInvoiceLink', {
     title,
-    description: T.desc,
+    description: pack.coins ? T.desc : T.descG,
     payload: JSON.stringify({ u: user.id, p: body.pack, t: Date.now() }),
     provider_token: '',          // empty for Telegram Stars
     currency: 'XTR',             // Telegram Stars
