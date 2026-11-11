@@ -37,7 +37,7 @@ GitHub Pages: Settings → Pages → Deploy from branch → `main` / `root`.
 
 ### 4. BotFather
 - `/myapps` → приложение → Edit Web App URL → адрес игры
-- `/setmenubutton` → тот же адрес, текст `Грати`
+- `/setmenubutton` → тот же адрес, текст `Грати` 
 - `/setcommands`: `start - Грати`, `paysupport - Питання щодо оплати`
 
 ## Важно
