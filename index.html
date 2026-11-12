@@ -387,8 +387,6 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 <script>
 (function(){
 const tg = window.Telegram && window.Telegram.WebApp;
-// URL of the payments worker (see worker.js), e.g. 'https://sugar-shock-pay.yourname.workers.dev'
-const PAY_API = '';
 const tgAtLeast = v => !!(tg && tg.isVersionAtLeast && tg.isVersionAtLeast(v));
 if (tg) {
   try { tg.ready(); tg.expand(); } catch(e){}
@@ -1645,30 +1643,40 @@ function exchange(i){
   notify(t('tCoins',{n:x.c})); openShop();
 }
 let paying = false;
+const hasServerless = () => !!(tg && tg.initData && tg.openInvoice && tg.Serverless && tg.Serverless.call);
+function srv(name, input){
+  return new Promise((res, rej) => { try { tg.Serverless.call(name, input || {}, (err, out) => err ? rej(err) : res(out)); } catch(e){ rej(e); } });
+}
+// coins and stars are credited from the server records, so a payment is never lost even if the game was closed
+async function claimPurchases(retries = 0){
+  if (!hasServerless()) return 0;
+  try {
+    const r = await srv('claimPurchases');
+    const items = (r && r.items) || [];
+    if (!items.length){ if (retries > 0){ await wait(1500); return claimPurchases(retries - 1); } return 0; }
+    let c = 0, g = 0;
+    for (const it of items){ c += it.coins || 0; g += it.gems || 0; P().stats.purchases++; }
+    state.coins += c; state.gstars = (state.gstars||0) + g;
+    save(); hud(); checkAch(); sfx('coin');
+    if (c) notify(t('tCoins',{n:c}));
+    if (g) notify(t('tGems',{n:g}));
+    try { tg.HapticFeedback.notificationOccurred('success'); } catch(e){}
+    return items.length;
+  } catch(e){ return 0; }
+}
 async function startPurchase(i){
   if (paying) return;
-  if (!tg || !tg.initData || !tg.openInvoice || !PAY_API){
+  if (!hasServerless()){
     openSheet(`<h2>${t('shopTitle')}</h2><p>${t('payOnlyTg')}</p><button class="btn ghost" data-act="shop">${t('back')}</button>`);
     return;
   }
   paying = true; notify(t('payOpening'));
   try {
-    const r = await fetch(PAY_API.replace(/\/$/,'') + '/invoice', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ initData: tg.initData, pack: i })
-    });
-    const d = await r.json();
-    if (!r.ok || !d.link) throw new Error('no invoice');
-    tg.openInvoice(d.link, status => {
+    const d = await srv('createInvoice', { pack: i });
+    if (!d || !d.link) throw new Error('no invoice');
+    tg.openInvoice(d.link, async status => {
       paying = false;
-      if (status === 'paid'){
-        sfx('coin');
-        const pk = PACKS[i];
-        if (pk.coins) state.coins += pk.coins; else state.gstars = (state.gstars||0) + pk.gems;
-        P().stats.purchases++; save(); hud(); checkAch(); closeAfterShop();
-        notify(pk.coins ? t('tCoins',{n:pk.coins}) : t('tGems',{n:pk.gems}));
-        try { tg.HapticFeedback.notificationOccurred('success'); } catch(e){}
-      }
+      if (status === 'paid'){ closeAfterShop(); await claimPurchases(6); }
       else if (status === 'failed') notify(t('payFailed'));
       else if (status === 'pending') notify(t('payPending'));
     });
@@ -2132,7 +2140,7 @@ const SPK_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const SPK_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="m16 9 5 6M21 9l-5 6"/></svg>';
 function renderSound(){ const b = $('#soundBtn'); if (b){ b.innerHTML = state.music ? SPK_ON : SPK_OFF; b.setAttribute('aria-pressed', state.music ? 'true' : 'false'); } }
 
-function boot(){ normalizeState(); if (state.music === undefined) state.music = true; if (state.sfx === undefined) state.sfx = true; playLv = state.level; applyBg(); applySkin(); applyLang(); renderSound(); startLevel(); showScreen('menu'); checkReferral(); loadCloudAvatar();
+function boot(){ normalizeState(); if (state.music === undefined) state.music = true; if (state.sfx === undefined) state.sfx = true; playLv = state.level; applyBg(); applySkin(); applyLang(); renderSound(); startLevel(); showScreen('menu'); checkReferral(); loadCloudAvatar(); claimPurchases();
   if (dailyAvailable() && state.dailyShown !== today()){ state.dailyShown = today(); save(); setTimeout(() => { if (!overlay.classList.contains('open')) openDaily(); }, 900); } }
 if (cloud){
   let done = false;

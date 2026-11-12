@@ -1,0 +1,5 @@
+{
+  // Candy Shock: the game is a single static file in ./public
+  "$schema": "./node_modules/@tgcloud/cli/schema/tgcloud.json",
+  "static": { "source": "public" }
+}
