@@ -102,9 +102,17 @@ button.pill{cursor:pointer}
 .btn.big{padding:18px;font-size:19px;border-radius:18px;box-shadow:0 6px 0 #C7820A;margin-bottom:4px}
 .btn.big:active{transform:translateY(3px);box-shadow:0 3px 0 #C7820A}
 .btn.big2{padding:15px;font-size:17px;border-radius:18px;margin-top:0;background:var(--surface)}
-.menu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:auto}
+.menu-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:auto}
 .mbtn{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 4px;color:var(--ink);font:inherit;font-weight:800;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer}
 .mbtn .e{font-size:24px}
+@media (max-width:400px){ .mbtn{font-size:11px;padding:10px 2px} .mbtn .e{font-size:21px} }
+.fr-hero{font-size:64px;text-align:center;line-height:1;margin:4px 0 8px}
+.fr-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.fr-stats .stat b{display:flex;align-items:center;justify-content:center;gap:4px}
+.fr-gifts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.fr-gifts div{border:1px dashed var(--gold);border-radius:14px;padding:8px;text-align:center}
+.fr-gifts b{display:block;font-size:20px;font-weight:900;color:var(--gold)}
+.fr-gifts span{font-size:12px;color:var(--muted);font-weight:700}
 .mbtn .dot{position:absolute;right:8px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--danger);border:2px solid var(--surface);display:none}
 .mbtn.has-dot .dot{display:block}
 .map-top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
@@ -131,6 +139,16 @@ button.pill{cursor:pointer}
 .wbig{font-size:84px;line-height:1;margin:6px 0 10px;animation:popIn .6s ease-out}
 .wname{font-size:22px;font-weight:900;color:var(--ink) !important;margin-bottom:8px !important}
 @media (prefers-reduced-motion: reduce){ .hero svg,.node.cur,.wbig,.logo-wrap .bolt{animation:none} }
+.lb{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:14px;background:var(--track)}
+.lb-row.me{background:var(--surface);box-shadow:0 0 0 2px var(--gold) inset}
+.lb-place{width:28px;text-align:center;font-weight:900;font-size:16px;flex:none}
+.lb-av{width:34px;height:34px;font-size:15px}
+.lb-name{flex:1;min-width:0;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-score{display:flex;flex-direction:column;align-items:flex-end;font-weight:900;font-size:14px;flex:none}
+.lb-score small{display:flex;align-items:center;gap:2px;color:var(--muted);font-weight:800;font-size:12px}
+.lb-score .gstar{width:13px;height:13px}
+.lb-gap{text-align:center;color:var(--muted);font-weight:900}
 .prof-name{font-size:22px;font-weight:900;line-height:1.15}
 .prof-rank{color:var(--muted);font-weight:700;font-size:14px}
 .xp-row{display:flex;justify-content:space-between;font-weight:800;font-size:14px;margin-bottom:6px}
@@ -245,9 +263,18 @@ button.pill{cursor:pointer}
 .boosters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .booster.locked{opacity:.55}
 .booster.locked .price{font-size:12px}
-.ice{position:absolute;width:12.5%;height:12.5%;z-index:3;pointer-events:none;padding:3%}
-.ice::before{content:"";display:block;width:100%;height:100%;border-radius:20%;background:linear-gradient(135deg,rgba(225,247,255,.55),rgba(150,215,255,.25));border:2px solid rgba(255,255,255,.75);box-shadow:inset 0 0 10px rgba(255,255,255,.55)}
-.ice.hp2::before{background:linear-gradient(135deg,rgba(230,248,255,.82),rgba(165,222,255,.5));border-width:3px}
+.tile{z-index:1}
+.ice{position:absolute;width:12.5%;height:12.5%;z-index:0;pointer-events:none;padding:1.5%}
+.ice::before{content:"";display:block;width:100%;height:100%;box-sizing:border-box;border-radius:14%;
+  background:linear-gradient(135deg,rgba(214,244,255,.95),rgba(126,198,245,.85) 55%,rgba(86,160,226,.9));
+  border:2px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 0 12px rgba(255,255,255,.75),inset -4px -5px 10px rgba(40,110,190,.35)}
+.ice::after{content:"";position:absolute;left:12%;top:10%;width:34%;height:14%;border-radius:99px;background:rgba(255,255,255,.75);transform:rotate(-28deg)}
+.ice.hp2::before{background:
+  linear-gradient(48deg,transparent 46%,rgba(255,255,255,.75) 48%,transparent 51%),
+  linear-gradient(-36deg,transparent 58%,rgba(255,255,255,.6) 60%,transparent 63%),
+  linear-gradient(135deg,rgba(176,226,255,.98),rgba(74,150,222,.95) 55%,rgba(40,108,196,.98));
+  border:3px solid #fff;box-shadow:inset 0 0 14px rgba(255,255,255,.8),0 0 0 2px rgba(120,190,245,.6)}
 .ice.crack{animation:crack .3s}
 .cage{position:absolute;width:12.5%;height:12.5%;z-index:4;pointer-events:none;padding:2%}
 .cage svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 0 rgba(0,0,0,.35))}
@@ -371,7 +398,9 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
     <button class="btn ghost big2" data-m="map">🗺️ <span data-i18n="mapTitle"></span></button>
     <div class="menu-row">
       <button class="mbtn" id="bonusBtn" data-m="bonus"><span class="e">🎁</span><span data-i18n="menuBonus"></span><span class="dot"></span></button>
+      <button class="mbtn" data-m="top"><span class="e">🏆</span><span data-i18n="menuTop"></span></button>
       <button class="mbtn" data-m="profile"><span class="e">👤</span><span data-i18n="menuProfile"></span></button>
+      <button class="mbtn" data-m="friends"><span class="e">🤝</span><span data-i18n="menuFriends"></span></button>
       <button class="mbtn" data-m="settings"><span class="e">⚙️</span><span data-i18n="menuSettings"></span></button>
     </div>
   </div>
@@ -418,6 +447,9 @@ const EXCH = [{ g:5, c:100 }, { g:20, c:450 }, { g:50, c:1200 }];
 const LANGS = { uk:'Українська', ru:'Русский', en:'English' };
 const I18N = {
   uk: {
+    menuFriends:'Друзі', frInvited:'запрошено друзів', frEarned:'зароблено монет', frGiftFriend:'монет другу', frGiftYou:'монет тобі за друга', copyLink:'Копіювати посилання', linkCopied:'Посилання скопійовано', friendsHint:'Бонус нараховується, коли друг уперше відкриває гру за твоїм посиланням.',
+    topError:'Не вдалося завантажити рейтинг. Перевір інтернет і спробуй ще раз.',
+    topTitle:'Рейтинг гравців', menuTop:'Рейтинг', topEmpty:'Поки що тут порожньо. Пройди рівень і стань першим!', topOnlyTg:'Рейтинг працює всередині Telegram.', topLoading:'Завантаження…', youRank:'Твоє місце: {n}', lvShort:'Рів. {n}', friendBonus:'Друзі приєдналися: +{n} монет!', invitedN:'Запрошено друзів: {n}', friendsText2:'Надішли гру друзям: новачок отримає 100 монет, а ти +150 монет за кожного друга.',
     quitTitle:'Вийти з гри?', quitText:'Ви впевнені, що хочете вийти? Прогрес поточної гри буде втрачено.', quitYes:'Вийти', quitNo:'Залишитись',
     coinsTitle:'Монети', starsTitle:'Зірки', exchTitle:'Обмін зірок на монети', exchBtn:'Обміняти', noStars:'Не вистачає зірок', tGems:'+{n} зірок', buyStars:'Купити зірки', tgStarsNote:'Покупки оплачуються через Telegram Stars ⭐', skin_candycane:'Льодяник', skin_mint:'М’ята', skin_ice:'Лід', skin_choco:'Шоколад', skin_neon:'Неон', skin_gold:'Золото', bg_hearts:'Серця', bg_confetti:'Конфеті', bg_clouds:'Хмаринки', bg_ocean:'Океан', bg_synth:'Ретрохвиля', bg_galaxy:'Галактика',
     continue:'Продовжити · Рівень {n}', mapTitle:'Карта', menuBonus:'Бонуси', menuProfile:'Профіль', menuSettings:'Налаштування', home:'Меню', worldN:'Світ {n}', worldLocked:'Відкриється після рівня {n}', newWorld:'Нова локація!', newWorldText:'Ти відкрив новий солодкий світ: нові рівні й нові виклики!', go:'Вперед!', bg_loc:'Локація', w_caramel:'Карамельна долина', w_choco:'Шоколадний ліс', w_mint:'М’ятні гори', w_lolly:'Льодяникові озера', w_jelly:'Мармеладні острови', w_cloud:'Зефірні хмари', w_honey:'Медова пустеля', w_berry:'Ягідні джунглі', w_volcano:'Желейний вулкан', w_cosmic:'Зоряна цукерня',
@@ -465,6 +497,9 @@ const I18N = {
     language:'Мова', theme:'Тема', themeAuto:'Авто', themeLight:'Світла', themeDark:'Темна', done:'Готово'
   },
   ru: {
+    menuFriends:'Друзья', frInvited:'приглашено друзей', frEarned:'заработано монет', frGiftFriend:'монет другу', frGiftYou:'монет тебе за друга', copyLink:'Скопировать ссылку', linkCopied:'Ссылка скопирована', friendsHint:'Бонус начисляется, когда друг впервые открывает игру по твоей ссылке.',
+    topError:'Не удалось загрузить рейтинг. Проверь интернет и попробуй ещё раз.',
+    topTitle:'Рейтинг игроков', menuTop:'Рейтинг', topEmpty:'Пока здесь пусто. Пройди уровень и стань первым!', topOnlyTg:'Рейтинг работает внутри Telegram.', topLoading:'Загрузка…', youRank:'Твоё место: {n}', lvShort:'Ур. {n}', friendBonus:'Друзья присоединились: +{n} монет!', invitedN:'Приглашено друзей: {n}', friendsText2:'Отправь игру друзьям: новичок получит 100 монет, а ты +150 монет за каждого друга.',
     quitTitle:'Выйти из игры?', quitText:'Вы уверены, что хотите выйти? Прогресс текущей игры будет потерян.', quitYes:'Выйти', quitNo:'Остаться',
     coinsTitle:'Монеты', starsTitle:'Звёзды', exchTitle:'Обмен звёзд на монеты', exchBtn:'Обменять', noStars:'Не хватает звёзд', tGems:'+{n} звёзд', buyStars:'Купить звёзды', tgStarsNote:'Покупки оплачиваются через Telegram Stars ⭐', skin_candycane:'Леденец', skin_mint:'Мята', skin_ice:'Лёд', skin_choco:'Шоколад', skin_neon:'Неон', skin_gold:'Золото', bg_hearts:'Сердца', bg_confetti:'Конфетти', bg_clouds:'Облака', bg_ocean:'Океан', bg_synth:'Ретроволна', bg_galaxy:'Галактика',
     continue:'Продолжить · Уровень {n}', mapTitle:'Карта', menuBonus:'Бонусы', menuProfile:'Профиль', menuSettings:'Настройки', home:'Меню', worldN:'Мир {n}', worldLocked:'Откроется после уровня {n}', newWorld:'Новая локация!', newWorldText:'Ты открыл новый сладкий мир: новые уровни и новые испытания!', go:'Вперёд!', bg_loc:'Локация', w_caramel:'Карамельная долина', w_choco:'Шоколадный лес', w_mint:'Мятные горы', w_lolly:'Леденцовые озёра', w_jelly:'Мармеладные острова', w_cloud:'Зефирные облака', w_honey:'Медовая пустыня', w_berry:'Ягодные джунгли', w_volcano:'Желейный вулкан', w_cosmic:'Звёздная кондитерская',
@@ -512,6 +547,9 @@ const I18N = {
     language:'Язык', theme:'Тема', themeAuto:'Авто', themeLight:'Светлая', themeDark:'Тёмная', done:'Готово'
   },
   en: {
+    menuFriends:'Friends', frInvited:'friends invited', frEarned:'coins earned', frGiftFriend:'coins for a friend', frGiftYou:'coins for you per friend', copyLink:'Copy link', linkCopied:'Link copied', friendsHint:'The bonus counts when a friend opens the game for the first time from your link.',
+    topError:'Couldn’t load the leaderboard. Check your connection and try again.',
+    topTitle:'Leaderboard', menuTop:'Top', topEmpty:'Nothing here yet. Clear a level and be the first!', topOnlyTg:'The leaderboard works inside Telegram.', topLoading:'Loading…', youRank:'Your place: {n}', lvShort:'Lv. {n}', friendBonus:'Friends joined: +{n} coins!', invitedN:'Friends invited: {n}', friendsText2:'Share the game: a newcomer gets 100 coins and you get +150 for every friend.',
     quitTitle:'Leave the game?', quitText:'Are you sure you want to leave? Your progress in this game will be lost.', quitYes:'Leave', quitNo:'Stay',
     coinsTitle:'Coins', starsTitle:'Stars', exchTitle:'Swap stars for coins', exchBtn:'Swap', noStars:'Not enough stars', tGems:'+{n} stars', buyStars:'Buy stars', tgStarsNote:'Purchases are paid with Telegram Stars ⭐', skin_candycane:'Candy cane', skin_mint:'Mint', skin_ice:'Ice', skin_choco:'Chocolate', skin_neon:'Neon', skin_gold:'Gold', bg_hearts:'Hearts', bg_confetti:'Confetti', bg_clouds:'Clouds', bg_ocean:'Ocean', bg_synth:'Synthwave', bg_galaxy:'Galaxy',
     continue:'Continue · Level {n}', mapTitle:'Map', menuBonus:'Bonuses', menuProfile:'Profile', menuSettings:'Settings', home:'Menu', worldN:'World {n}', worldLocked:'Unlocks after level {n}', newWorld:'New location!', newWorldText:'You unlocked a new sweet world with new levels and new challenges!', go:'Let’s go!', bg_loc:'Location', w_caramel:'Caramel Valley', w_choco:'Chocolate Forest', w_mint:'Mint Mountains', w_lolly:'Lollipop Lakes', w_jelly:'Jelly Islands', w_cloud:'Marshmallow Clouds', w_honey:'Honey Desert', w_berry:'Berry Jungle', w_volcano:'Jelly Volcano', w_cosmic:'Star Bakery',
@@ -861,7 +899,7 @@ function openNameSheet(){
 function saveName(){
   const v = ($('#nameIn').value || '').replace(/\s+/g, ' ').trim().slice(0, 20);
   if (v) state.name = v; else delete state.name;
-  save(); renderAvatars(); notify(t('nameSaved')); openProfile();
+  save(); renderAvatars(); pushScore(); notify(t('nameSaved')); openProfile();
 }
 function playerName(){
   if (state.name) return state.name;
@@ -1564,6 +1602,7 @@ function win(){
   state.gstars = (state.gstars || 0) + gain + (ev && main ? 1 : 0); save();
   $('#coins').textContent = state.coins;
   const xp = finishGame(true);
+  pushScore();
   lastEnd = { kind:'win', doneLevel, reward, xp, st, gain, newWorld };
   showWin();
 }
@@ -1727,6 +1766,7 @@ sheet.addEventListener('click', e => {
   else if (act==='spin') spinWheel();
   else if (act==='task') claimTask(i);
   else if (act==='invite') inviteFriend();
+  else if (act==='copyRef') copyRef();
   else if (act==='closeBonus'){ closeOrEnd(); }
   else if (act==='snd'){ state[b.dataset.k] = b.dataset.v === 'true'; save(); auUnlock(); musicSync(); renderSound(); if (b.dataset.k==='sfx') sfx('tap'); openSettings(); }
   else if (act==='theme'){ state.theme = b.dataset.v; save(); applyTheme(); openSettings(); }
@@ -1901,12 +1941,55 @@ function currentEvent(){
 }
 // invites: shared link carries the inviter id, the newcomer gets a welcome gift once
 const BOT_LINK = 'https://t.me/sugar_shock_bot/play';
+const refLink = () => { const id = (TGU && TGU.id) || 0; return BOT_LINK + (id ? '?startapp=ref_' + id : ''); };
+function openFriends(){
+  const n = state.invited || 0;
+  openSheet(`<div class="fr-hero">🤝</div>
+    <h2 style="text-align:center">${t('friendsTitle')}</h2>
+    <p style="text-align:center">${t('friendsText2')}</p>
+    <div class="fr-stats">
+      <div class="stat"><b>${online() ? n : '—'}</b><span>${t('frInvited')}</span></div>
+      <div class="stat"><b>${online() ? COIN + n*150 : '—'}</b><span>${t('frEarned')}</span></div>
+    </div>
+    <div class="fr-gifts"><div><b>+100</b><span>${t('frGiftFriend')}</span></div><div><b>+150</b><span>${t('frGiftYou')}</span></div></div>
+    <button class="btn" data-act="invite">${t('inviteBtn')}</button>
+    <button class="btn ghost" data-act="copyRef">🔗 ${t('copyLink')}</button>
+    <small class="hint-note" style="text-align:center;margin:10px 0 4px">${t('friendsHint')}</small>
+    <button class="btn ghost" data-act="closeBonus">${t('close')}</button>`);
+}
+async function copyRef(){
+  const link = refLink(); let ok = false;
+  try { await navigator.clipboard.writeText(link); ok = true; } catch(e){}
+  if (!ok){ try { const ta = document.createElement('textarea'); ta.value = link; document.body.appendChild(ta); ta.select(); ok = document.execCommand('copy'); ta.remove(); } catch(e){} }
+  notify(ok ? t('linkCopied') : link); sfx('tap');
+}
 function inviteFriend(){
-  const id = (TGU && TGU.id) || 0, link = BOT_LINK + (id ? '?startapp=ref_' + id : '');
+  const link = refLink();
   const url = 'https://t.me/share/url?url=' + encodeURIComponent(link) + '&text=' + encodeURIComponent(t('inviteText'));
   sfx('open');
   try { if (tg && tg.openTelegramLink){ tg.openTelegramLink(url); return; } } catch(e){}
   window.open(url, '_blank');
+}
+const online = () => !!(PAY_API && tg && tg.initData);
+async function server(path, body){
+  const r = await fetch(PAY_API + path, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(Object.assign({ initData: tg.initData }, body || {})) });
+  if (!r.ok) throw new Error('http ' + r.status);
+  return r.json();
+}
+const totalLvStars = () => Object.values(state.lvStars || {}).reduce((a,b) => a + b, 0);
+function pushScore(){ if (!online()) return; server('/score', { level: state.level - 1, stars: totalLvStars(), name: playerName() }).catch(() => {}); }
+async function syncServer(){
+  if (!online()){ checkReferral(); return; }
+  const sp = (tg.initDataUnsafe && tg.initDataUnsafe.start_param) || '';
+  const fresh = state.level <= 1 && !state.refUsed && !((state.p && state.p.stats && state.p.stats.games) > 0);
+  try {
+    const r = await server('/hello', { ref: sp, fresh, name: playerName() });
+    if (r.refOk && !state.refUsed){ state.refUsed = sp; state.coins += 100; notify(t('welcomeGift',{n:100})); }
+    if (r.refBonus > 0){ state.coins += r.refBonus; notify(t('friendBonus',{n:r.refBonus})); sfx('coin'); }
+    state.invited = r.invited || 0;
+    save(); hud();
+  } catch(e){}
+  pushScore();
 }
 function checkReferral(){
   const sp = tg && tg.initDataUnsafe && tg.initDataUnsafe.start_param;
@@ -1926,9 +2009,25 @@ function openBonus(){
     <div class="ach-list">${ts.map((x,i) => `<div class="ach ${x.done ? 'done' : ''}"><span class="ico">${x.k==='color' ? `<svg viewBox="0 0 100 100" style="width:30px;height:30px">${candy(x.c)}</svg>` : {wins:'🏆',combo:'⚡',popped:'🍬',planes:'✈️',ice:'❄️'}[x.k]}</span>
       <div style="flex:1"><div class="ach-name">${taskText(x)}</div><div class="bar" style="margin-top:6px"><i style="width:${x.p/x.n*100}%"></i></div></div>
       ${x.done ? '<span class="ach-rew">✓</span>' : x.p >= x.n ? `<button class="btn" style="width:auto;padding:8px 12px;font-size:14px" data-act="task" data-i="${i}">+${x.r}</button>` : `<span class="ach-rew">${x.p}/${x.n}</span>`}</div>`).join('')}</div>
-    <h3 class="section-title" style="margin-top:18px">${t('friendsTitle')}</h3>
-    <p>${t('friendsText')}</p>
-    <button class="btn" data-act="invite">${t('inviteBtn')}</button>
+    <button class="btn ghost" data-act="closeBonus">${t('close')}</button>`);
+}
+
+/* ---------- leaderboard ---------- */
+async function openTop(){
+  if (!online()){ openSheet(`<h2>${t('topTitle')}</h2><p>${t('topOnlyTg')}</p><button class="btn ghost" data-act="closeBonus">${t('close')}</button>`); return; }
+  openSheet(`<h2>${t('topTitle')}</h2><p>${t('topLoading')}</p>`);
+  let r;
+  try { r = await server('/top'); } catch(e){ openSheet(`<h2>${t('topTitle')}</h2><p>${t('topError')}</p><button class="btn ghost" data-act="closeBonus">${t('close')}</button>`); return; }
+  const medal = i => ['🥇','🥈','🥉'][i] || (i + 1);
+  const row = (p, place) => `<div class="lb-row${p.me ? ' me' : ''}"><span class="lb-place">${place}</span>
+      <span class="avatar lb-av" style="--av:hsl(${[...p.name].reduce((h,c) => (h*31 + c.charCodeAt(0)) % 360, 0)},62%,52%)">${esc((p.name.trim()[0] || '?').toUpperCase())}</span>
+      <span class="lb-name">${esc(p.name)}</span><span class="lb-score">${t('lvShort',{n:p.level})}<small>${STAR_SVG()}${p.stars}</small></span></div>`;
+  const list = (r.top || []).map((p,i) => row(p, medal(i))).join('');
+  const inTop = (r.top || []).some(p => p.me);
+  const mine = !inTop && r.rank ? `<div class="lb-gap">⋯</div>${row({ name: playerName(), level: r.me.level, stars: r.me.stars, me: true }, r.rank)}` : '';
+  openSheet(`<h2>🏆 ${t('topTitle')}</h2>
+    ${r.rank ? `<div class="wallet">${t('youRank',{n:r.rank})}</div>` : ''}
+    <div class="lb">${list || `<p>${t('topEmpty')}</p>`}${mine}</div>
     <button class="btn ghost" data-act="closeBonus">${t('close')}</button>`);
 }
 
@@ -1993,6 +2092,8 @@ $('#menu').addEventListener('click', e => {
   else if (m === 'profile') openProfile();
   else if (m === 'settings') openSettings();
   else if (m === 'topup') openShop();
+  else if (m === 'top') openTop();
+  else if (m === 'friends'){ syncServer().then(() => { if (overlay.classList.contains('open') && $('.fr-hero')) openFriends(); }); openFriends(); }
 });
 $('#mapScr').addEventListener('click', e => {
   const n = e.target.closest('.node[data-lv]'); if (n){ playLevel(+n.dataset.lv); return; }
@@ -2132,7 +2233,7 @@ const SPK_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 const SPK_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="m16 9 5 6M21 9l-5 6"/></svg>';
 function renderSound(){ const b = $('#soundBtn'); if (b){ b.innerHTML = state.music ? SPK_ON : SPK_OFF; b.setAttribute('aria-pressed', state.music ? 'true' : 'false'); } }
 
-function boot(){ normalizeState(); if (state.music === undefined) state.music = true; if (state.sfx === undefined) state.sfx = true; playLv = state.level; applyBg(); applySkin(); applyLang(); renderSound(); startLevel(); showScreen('menu'); checkReferral(); loadCloudAvatar();
+function boot(){ normalizeState(); if (state.music === undefined) state.music = true; if (state.sfx === undefined) state.sfx = true; playLv = state.level; applyBg(); applySkin(); applyLang(); renderSound(); startLevel(); showScreen('menu'); syncServer(); loadCloudAvatar();
   if (dailyAvailable() && state.dailyShown !== today()){ state.dailyShown = today(); save(); setTimeout(() => { if (!overlay.classList.contains('open')) openDaily(); }, 900); } }
 if (cloud){
   let done = false;
